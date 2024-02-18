@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">My Book Application</string>
+    <string name="settings">Настройки</string>
+    <string name="name">Анонимный читатель</string>
+    <string name="authorization_button_text">Вход или регистрация</string>
+    <string name="reading_goal">Цель по чтению</string>
+    <string name="reading_goal_description">Установите цель и примите участие в испытании!</string>
+    <string name="set_goal">Установить цель</string>
+    <string name="statistics">Статистика</string>
+    <string name="books">книг</string>
+    <string name="read">прочитано</string>
+    <string name="pages">стр</string>
+    <string name="pages_per_hour">стр/час</string>
+    <string name="reading_speed">скорость чтения</string>
+    <string name="reading_time">время за чтением</string>
+    <string name="h">ч</string>
+    <string name="min">мин</string>
+
+</resources>
