@@ -41,6 +41,7 @@
             android:layout_marginLeft="4dp"
             app:layout_constraintLeft_toRightOf="@id/h"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBaseline_toBaselineOf="@id/readingTimeHours"
             android:text="0"
             android:textColor="@color/text_color"
             android:textStyle="bold"

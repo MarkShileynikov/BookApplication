@@ -15,5 +15,20 @@
     <string name="reading_time">время за чтением</string>
     <string name="h">ч</string>
     <string name="min">мин</string>
+    <string name="my_books">Мои книги</string>
+    <string name="there_will_be_your_books">Здесь будут ваши книги</string>
+    <string name="choose_first_book">Выбрать первую книгу</string>
+    <string name="available_offline">Доступны офлайн</string>
+    <string name="want_to_read">Хочу прочитать</string>
+    <string name="reading">Читаю</string>
+    <string name="already_read">Прочитал</string>
+    <string name="my_bookshelf">Мои полки</string>
+    <string name="my_bookshelf_description">У вас нет ни одной полки, и самое время создать первую</string>
+    <string name="create_bookshelf">Создать полку</string>
+    <string name="my_reviews">Мои отзывы</string>
+    <string name="reviews">отзывов</string>
+    <string name="profile">Профиль</string>
+    <string name="search">Поиск</string>
+    <string name="what_to_choose">Что выбрать</string>
 
 </resources>
