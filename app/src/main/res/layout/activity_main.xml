@@ -10,8 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
+        android:layout_above="@id/bottomNavigation"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/nav_graph"/>
+        app:navGraph="@navigation/nav_graph"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -23,6 +25,7 @@
         app:itemTextColor="@drawable/navigation_selector"
         android:background="@color/card_background"
         app:itemIconTint="@drawable/navigation_selector"
+        app:itemRippleColor="@android:color/transparent"
         />
 
 </RelativeLayout>

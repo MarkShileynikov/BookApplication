@@ -30,5 +30,12 @@
     <string name="profile">Профиль</string>
     <string name="search">Поиск</string>
     <string name="what_to_choose">Что выбрать</string>
+    <string name="signin">Войти</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="registration">Регистрация</string>
+    <string name="forgot_password">Забыл пароль</string>
+    <string name="create_password">Придумайте пароль</string>
 
 </resources>
