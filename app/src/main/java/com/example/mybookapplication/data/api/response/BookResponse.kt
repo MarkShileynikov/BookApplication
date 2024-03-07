@@ -3,7 +3,8 @@ package com.example.mybookapplication.data.api.response
 import com.google.gson.annotations.SerializedName
 
 data class BookResponse(
-    val objectId : String,
+    @SerializedName("objectId")
+    val id : String,
     val title: String,
     val author: String,
     val genre: String,
