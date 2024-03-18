@@ -3,8 +3,10 @@ package com.example.mybookapplication.presentation.search.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.entity.Book
 
@@ -27,9 +29,11 @@ class BookListAdapter(private val books : List<Book>) : RecyclerView.Adapter<Boo
     class BookListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         private var title: TextView = itemView.findViewById(R.id.bookTitle)
         private var author: TextView = itemView.findViewById(R.id.bookAuthor)
+        private var cover : ImageView = itemView.findViewById(R.id.bookCover)
         fun bind(book : Book) {
             title.text = book.title
             author.text = book.author
+            cover.load(book.cover)
         }
     }
 
