@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface BookRepository {
     suspend fun fetchBooks() : Flow<List<Book>>
+    suspend fun fetchBooksByGenre(genre : String) : Flow<List<Book>>
 }

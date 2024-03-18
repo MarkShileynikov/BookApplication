@@ -1,4 +1,4 @@
-package com.example.mybookapplication.presentation
+package com.example.mybookapplication.presentation.profile
 
 import androidx.fragment.app.Fragment
 import com.example.mybookapplication.R
