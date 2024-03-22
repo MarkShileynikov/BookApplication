@@ -39,9 +39,10 @@
 
             <EditText
                 android:id="@+id/bookSearchView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
+                android:maxLines="1"
                 android:hint="@string/enter_the_title_of_the_book_or_author"
                 android:textColor="@color/light_grey"
                 android:textColorHint="@color/light_grey"
