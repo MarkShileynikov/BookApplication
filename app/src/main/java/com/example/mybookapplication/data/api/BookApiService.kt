@@ -12,4 +12,7 @@ interface BookApiService {
 
     @GET("data/books")
     suspend fun fetchBooksByGenre(@Query("where") bookGenre : String) : List<BookResponse>
+
+    @GET("data/books")
+    suspend fun fetchBooksByTitleOrAuthor(@Query("where") titleOrAuthor : String) : List<BookResponse>
 }

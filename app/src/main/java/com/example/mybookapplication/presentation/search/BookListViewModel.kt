@@ -35,7 +35,6 @@ class BookListViewModel(context: Application, private val fetchBooksByGenreUseCa
                 }
         }
     }
-    fun getGenre() : String = this.genre
     companion object {
         fun bookListModelFactory(genre: String) : ViewModelProvider.Factory = viewModelFactory {
             initializer {

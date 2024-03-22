@@ -46,5 +46,24 @@ class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepo
         }
     }
 
+    override suspend fun fetchBooksByGenreOrAuthor(titleOrAuthor: String): Flow<List<Book>> = flow {
+        val response = bookApiService.fetchBooksByTitleOrAuthor("title LIKE '%$titleOrAuthor%' OR author LIKE '%$titleOrAuthor%'")
+        emit(response)
+    }.map { responses ->
+        responses.map { response ->
+            Book(
+                id = response.id,
+                title = response.title,
+                author = response.author,
+                genre = response.genre,
+                description = response.description,
+                releaseYear = response.releaseYear,
+                ageLimit = response.ageLimit,
+                cover = response.cover,
+                pages = response.pages
+            )
+        }
+    }
+
 
 }
