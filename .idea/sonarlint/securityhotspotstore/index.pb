@@ -1,14 +1,10 @@
 
-á
-Wapp/src/main/java/com/example/mybookapplication/presentation/search/BookListFragment.kt,4\5\45fed737e73ab7a8713d618d9d08d85805bc34ee
 É
 Sapp/src/main/java/com/example/mybookapplication/domain/repository/BookRepository.kt,e\f\ef03ae94f08a53cdede17c75016cb559734a9dd3
 Ö
 Uapp/src/main/java/com/example/mybookapplication/data/repository/BookRepositoryImpl.kt,e\4\e49707300c55bc478be39065bbecd7378266f05e
 ~
 Napp/src/main/java/com/example/mybookapplication/presentation/util/ViewState.kt,6\4\641b1dd7b8b57e3aaf16e2397413f164597e3a42
-à
-Xapp/src/main/java/com/example/mybookapplication/presentation/search/BookListViewModel.kt,4\5\450e9b1856af6311de246159a62189663ae96da6
 v
 Fapp/src/main/java/com/example/mybookapplication/domain/util/UseCase.kt,0\2\022d47325387340d4e717792a1f225c1a3191e2a
 Ö
@@ -21,3 +17,21 @@ bapp/src/main/java/com/example/mybookapplication/domain/usecase/FetshBooksByTitl
 Zapp/src/main/java/com/example/mybookapplication/domain/usecase/FetchBooksByGenreUseCase.kt,9\1\91911216bed72c49f9d97a2556567db2b4e5b014
 Ü
 Vapp/src/main/java/com/example/mybookapplication/presentation/search/SearchViewModel.kt,d\2\d29dafb6ac6378c8716da759b5070c14149f480c
+u
+Eapp/src/main/java/com/example/mybookapplication/domain/entity/Book.kt,3\d\3da78a012cce1cf3016e293b47b0a6723fcbf710
+é
+^app/src/main/java/com/example/mybookapplication/presentation/search/adapter/BookListAdapter.kt,8\6\86265ab53498903b35395d696842f2e8c6fdf21a
+ã
+[app/src/main/java/com/example/mybookapplication/presentation/search/adapter/GenreAdapter.kt,b\e\beb855153fb4dd71aa0d443facb56c075558c279
+á
+Wapp/src/main/java/com/example/mybookapplication/presentation/profile/ProfileFragment.kt,7\4\7498de3bc7c424d97c65917bea4d7afe5e300931
+ñ
+fapp/src/main/java/com/example/mybookapplication/presentation/search/listener/OnGenreClickedListener.kt,5\d\5d6f86230ad4cb34bdc4455b32eb97a69039fe3e
+ï
+eapp/src/main/java/com/example/mybookapplication/presentation/search/listener/OnBookClickedListener.kt,5\9\590a09eb14e57b72e2e7f98603d9936141fbfd91
+ê
+`app/src/main/java/com/example/mybookapplication/presentation/search/booklist/BookListFragment.kt,c\e\ce4dc3a6c14651f39baf20417534b568c2b389df
+à
+Xapp/src/main/java/com/example/mybookapplication/presentation/search/book/BookFragment.kt,6\c\6c16b7166e2227c2b3d6d909ad8bf77679332b7f
+ë
+aapp/src/main/java/com/example/mybookapplication/presentation/search/book/BookFragmentViewModel.kt,c\f\cfbd6c11beade7dd7fdfa538fefe41d4f0503936

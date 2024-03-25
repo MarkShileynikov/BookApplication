@@ -1,4 +1,4 @@
-package com.example.mybookapplication.presentation.search
+package com.example.mybookapplication.presentation.search.booklist
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

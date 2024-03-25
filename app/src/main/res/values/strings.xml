@@ -39,5 +39,10 @@
     <string name="create_password">Придумайте пароль</string>
     <string name="enter_the_title_of_the_book_or_author">введите название книги или автора</string>
     <string name="genres">Жанры</string>
+    <string name="author">Автор:</string>
+    <string name="read_book">Читать</string>
+    <string name="about_book">О книге</string>
+    <string name="read_more">Читать далее</string>
+    <string name="hide">Скрыть</string>
 
 </resources>

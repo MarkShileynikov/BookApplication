@@ -18,12 +18,15 @@ import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.entity.Book
 import com.example.mybookapplication.presentation.search.adapter.BookListAdapter
 import com.example.mybookapplication.presentation.search.adapter.GenreAdapter
+import com.example.mybookapplication.presentation.search.booklist.BookListFragment
+import com.example.mybookapplication.presentation.search.listener.OnBookClickedListener
+import com.example.mybookapplication.presentation.search.listener.OnGenreClickedListener
 import com.example.mybookapplication.presentation.util.ViewState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SearchFragment : Fragment(), OnItemClickedListener {
+class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListener, OnBookClickedListener {
     companion object {
         const val GENRE_KEY = "genre"
     }
@@ -33,17 +36,11 @@ class SearchFragment : Fragment(), OnItemClickedListener {
     private lateinit var searchView : EditText
     private lateinit var recyclerView : RecyclerView
     private val viewModel : SearchViewModel by viewModels { SearchViewModel.searchViewModelFactory }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
-
-        setUpViews(view)
-        return view
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        bindViews(view)
+        super.onViewCreated(view, savedInstanceState)
     }
-    private fun setUpViews(view : View) {
+    private fun bindViews(view : View) {
         searchView = view.findViewById(R.id.bookSearchView)
         recyclerView = view.findViewById(R.id.genreList)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -73,7 +70,7 @@ class SearchFragment : Fragment(), OnItemClickedListener {
                 if (query.isNotBlank()) {
                     searchJob = lifecycleScope.launch {
                         delay(300)
-                        viewModel.fetchBooksByTitleOrAuthor(query)
+                        viewModel.fetchBooksByTitleOrAuthor(query.trim().replace("\\s+".toRegex(), " "))
                         viewModel.viewState.collect {
                             when(it) {
                                 is ViewState.Success -> {
@@ -98,13 +95,19 @@ class SearchFragment : Fragment(), OnItemClickedListener {
     }
 
     private fun setUpBookList(books : List<Book>) {
-        bookListAdapter = BookListAdapter(books)
+        bookListAdapter = BookListAdapter(books, this)
         recyclerView.adapter = bookListAdapter
     }
 
-    override fun itemClicked(genre : String) {
+    override fun genreClicked(genre : String) {
         val bundle = Bundle()
         bundle.putString(GENRE_KEY, genre)
         findNavController().navigate(R.id.to_book_list_screen, bundle)
+    }
+
+    override fun bookClicked(book: Book) {
+        val bundle = Bundle()
+        bundle.putParcelable(BookListFragment.BOOK_KEY, book)
+        findNavController().navigate(R.id.action_searchFragment_to_bookFragment, bundle)
     }
 }

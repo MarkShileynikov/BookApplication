@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.entity.Book
+import com.example.mybookapplication.presentation.search.listener.OnBookClickedListener
 
-class BookListAdapter(private val books : List<Book>) : RecyclerView.Adapter<BookListAdapter.BookListViewHolder>(){
+class BookListAdapter(private val books : List<Book>, private val bookClickedListener: OnBookClickedListener) : RecyclerView.Adapter<BookListAdapter.BookListViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookListViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.book_item, parent, false)
-        return BookListViewHolder(view)
+        return BookListViewHolder(view, bookClickedListener)
     }
 
     override fun getItemCount(): Int {
@@ -26,7 +27,7 @@ class BookListAdapter(private val books : List<Book>) : RecyclerView.Adapter<Boo
         holder.bind(books[position])
     }
 
-    class BookListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+    class BookListViewHolder(itemView : View, private val bookClickedListener: OnBookClickedListener) : RecyclerView.ViewHolder(itemView) {
         private var title: TextView = itemView.findViewById(R.id.bookTitle)
         private var author: TextView = itemView.findViewById(R.id.bookAuthor)
         private var cover : ImageView = itemView.findViewById(R.id.bookCover)
@@ -34,6 +35,9 @@ class BookListAdapter(private val books : List<Book>) : RecyclerView.Adapter<Boo
             title.text = book.title
             author.text = book.author
             cover.load(book.cover)
+            itemView.setOnClickListener {
+                bookClickedListener.bookClicked(book)
+            }
         }
     }
 
