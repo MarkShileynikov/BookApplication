@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -81,6 +82,7 @@ class BookListFragment : Fragment(), OnBookClickedListener{
                     when(it) {
                         is ViewState.Success -> {
                             setUpRecyclerView(view, it.data)
+                            view.findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
                         }
                         is ViewState.Loading -> {
                             //TODO

@@ -25,12 +25,16 @@
             android:id="@+id/to_book_list_screen"
             app:destination="@id/bookListFragment"
             app:popUpTo="@id/searchFragment"
-            app:launchSingleTop="true" />
+            app:launchSingleTop="true"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_searchFragment_to_bookFragment"
             app:destination="@id/bookFragment"
             app:popUpTo="@id/searchFragment"
-            app:launchSingleTop="true" />
+            app:launchSingleTop="true"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 
     <fragment
@@ -46,7 +50,9 @@
             android:id="@+id/action_bookListFragment_to_bookFragment"
             app:destination="@id/bookFragment"
             app:popUpTo="@id/bookListFragment"
-            app:launchSingleTop="true" />
+            app:launchSingleTop="true"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
 
     <fragment

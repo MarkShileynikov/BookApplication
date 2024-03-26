@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:overScrollMode="never"
     >
 
 
@@ -95,7 +96,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toEndOf="@id/cover"
                 app:layout_constraintTop_toBottomOf="@id/star"
-                tools:text="520 читателей оценили"
+                android:text="0 читателей оценили"
                 android:textColor="@color/light_grey"/>
 
             <TextView
@@ -152,6 +153,19 @@
             android:layout_gravity="end"
             android:text="@string/read_more"
             android:textColor="@color/orange"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/review"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

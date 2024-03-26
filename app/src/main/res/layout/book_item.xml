@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/bookCover"
-            android:layout_width="72dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/bookCover"
             tools:text="Портет Дориана Грея"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@color/text_color"/>
 
         <TextView

@@ -35,3 +35,7 @@ eapp/src/main/java/com/example/mybookapplication/presentation/search/listener/On
 Xapp/src/main/java/com/example/mybookapplication/presentation/search/book/BookFragment.kt,6\c\6c16b7166e2227c2b3d6d909ad8bf77679332b7f
 ‘
 aapp/src/main/java/com/example/mybookapplication/presentation/search/book/BookFragmentViewModel.kt,c\f\cfbd6c11beade7dd7fdfa538fefe41d4f0503936
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+D
+app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6

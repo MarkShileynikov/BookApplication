@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.FragmentBookBinding
 import com.example.mybookapplication.domain.entity.Book
@@ -37,7 +39,10 @@ class BookFragment : Fragment() {
         val book : Book? = arguments?.getParcelable(BookListFragment.BOOK_KEY)
         binding.title.text = book?.title
         binding.author.text = book?.author
-        binding.cover.load(book?.cover)
+        binding.cover.load(book?.cover) {
+            placeholder(R.drawable.default_cover)
+            crossfade(true)
+        }
         binding.pagesCount.text = "${book?.pages} печатных стр."
         binding.ageLimit.text = "${book?.ageLimit}+"
         binding.description.text = book?.description
@@ -62,9 +67,11 @@ class BookFragment : Fragment() {
             }
         }
 
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
     }
-
-
 
     override fun onDestroyView() {
         _binding = null

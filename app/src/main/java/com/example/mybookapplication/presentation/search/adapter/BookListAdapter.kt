@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.entity.Book
 import com.example.mybookapplication.presentation.search.listener.OnBookClickedListener
@@ -34,7 +35,10 @@ class BookListAdapter(private val books : List<Book>, private val bookClickedLis
         fun bind(book : Book) {
             title.text = book.title
             author.text = book.author
-            cover.load(book.cover)
+            cover.load(book.cover) {
+                placeholder(R.drawable.default_cover)
+                crossfade(true)
+            }
             itemView.setOnClickListener {
                 bookClickedListener.bookClicked(book)
             }

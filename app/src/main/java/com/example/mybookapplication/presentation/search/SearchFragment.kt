@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -75,10 +76,14 @@ class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListene
                             when(it) {
                                 is ViewState.Success -> {
                                     view.findViewById<TextView>(R.id.genresHeader).visibility = View.GONE
+                                    view.findViewById<ProgressBar>(R.id.progressBar).visibility = View.GONE
+                                    recyclerView.visibility = View.VISIBLE
                                     setUpBookList(it.data)
                                 }
                                 is ViewState.Loading -> {
-                                    //TODO
+                                    view.findViewById<TextView>(R.id.genresHeader).visibility = View.GONE
+                                    view.findViewById<ProgressBar>(R.id.progressBar).visibility = View.VISIBLE
+                                    recyclerView.visibility = View.GONE
                                 }
                                 is ViewState.Failure -> {
                                     //TODO

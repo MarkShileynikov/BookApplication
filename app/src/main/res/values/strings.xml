@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Book Application</string>
+    <string name="app_name">Diploma</string>
     <string name="settings">Настройки</string>
     <string name="name">Анонимный читатель</string>
     <string name="authorization_button_text">Вход или регистрация</string>
@@ -44,5 +44,6 @@
     <string name="about_book">О книге</string>
     <string name="read_more">Читать далее</string>
     <string name="hide">Скрыть</string>
+    <string name="review">Отзывы</string>
 
 </resources>
