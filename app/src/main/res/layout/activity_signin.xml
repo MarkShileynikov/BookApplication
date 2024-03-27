@@ -12,7 +12,8 @@
         android:layout_height="16dp"
         android:src="@drawable/close"
         app:tint="@color/orange" 
-        android:layout_gravity="end"/>
+        android:layout_gravity="end"
+        android:visibility="invisible"/>
         
     <TextView
         android:layout_width="wrap_content"
@@ -31,8 +32,10 @@
         android:textColor="@color/text_color"/>
     
     <EditText
+        android:id="@+id/emailView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/text_color"
         android:backgroundTint="@color/yellow_button"/>
 
     <TextView
@@ -43,11 +46,14 @@
         android:textColor="@color/text_color"/>
 
     <EditText
+        android:id="@+id/passwordView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/text_color"
         android:backgroundTint="@color/yellow_button"/>
 
     <Button
+        android:id="@+id/signIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -72,6 +78,7 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

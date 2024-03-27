@@ -37,6 +37,7 @@
     <string name="registration">Регистрация</string>
     <string name="forgot_password">Забыл пароль</string>
     <string name="create_password">Придумайте пароль</string>
+    <string name="create_username">Придумайте имя пользователя</string>
     <string name="enter_the_title_of_the_book_or_author">введите название книги или автора</string>
     <string name="genres">Жанры</string>
     <string name="author">Автор:</string>
@@ -45,5 +46,6 @@
     <string name="read_more">Читать далее</string>
     <string name="hide">Скрыть</string>
     <string name="review">Отзывы</string>
+    <string name="mark">Оценка:</string>
 
 </resources>

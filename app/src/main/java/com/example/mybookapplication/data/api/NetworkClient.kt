@@ -27,4 +27,7 @@ object NetworkClient {
 
     fun provideBookApiService(): BookApiService =
         retrofit.create(BookApiService::class.java)
+
+    fun provideAuthApiService(): AuthApiService =
+        retrofit.create(AuthApiService::class.java)
 }

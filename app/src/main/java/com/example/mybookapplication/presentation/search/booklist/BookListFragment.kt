@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.entity.Book
 import com.example.mybookapplication.presentation.search.SearchFragment
-import com.example.mybookapplication.presentation.search.adapter.BookListAdapter
+import com.example.mybookapplication.presentation.search.booklist.adapter.BookListAdapter
 import com.example.mybookapplication.presentation.search.listener.OnBookClickedListener
 import com.example.mybookapplication.presentation.util.ViewState
 import kotlinx.coroutines.launch

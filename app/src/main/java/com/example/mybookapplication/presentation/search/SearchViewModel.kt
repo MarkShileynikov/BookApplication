@@ -17,7 +17,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class SearchViewModel(context: Application, private val fetchBooksByTitleOrAuthorUseCase: FetchBooksByTitleOrAuthorUseCase) : AndroidViewModel(context){
+class SearchViewModel(
+    context: Application, private val fetchBooksByTitleOrAuthorUseCase: FetchBooksByTitleOrAuthorUseCase) : AndroidViewModel(context){
     val viewState = MutableStateFlow<ViewState<List<Book>>>(ViewState.Loading)
 
     fun fetchBooksByTitleOrAuthor(titleOrAuthor : String) {

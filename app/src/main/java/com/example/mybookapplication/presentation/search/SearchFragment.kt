@@ -3,9 +3,7 @@ package com.example.mybookapplication.presentation.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -17,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.entity.Book
-import com.example.mybookapplication.presentation.search.adapter.BookListAdapter
+import com.example.mybookapplication.presentation.search.booklist.adapter.BookListAdapter
 import com.example.mybookapplication.presentation.search.adapter.GenreAdapter
 import com.example.mybookapplication.presentation.search.booklist.BookListFragment
 import com.example.mybookapplication.presentation.search.listener.OnBookClickedListener
