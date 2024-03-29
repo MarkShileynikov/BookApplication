@@ -6,11 +6,11 @@
         android:enabled="true"
         android:icon="@drawable/ic_my_books"
         android:title="@string/my_books" />
-    <item
+<!--    <item
         android:id="@+id/recommendation"
         android:enabled="true"
         android:icon="@drawable/ic_bulb"
-        android:title="@string/what_to_choose"/>
+        android:title="@string/what_to_choose"/>-->
     <item
         android:id="@+id/searchFragment"
         android:enabled="true"

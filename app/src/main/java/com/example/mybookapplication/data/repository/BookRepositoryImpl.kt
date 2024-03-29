@@ -1,6 +1,7 @@
 package com.example.mybookapplication.data.repository
 
 import com.example.mybookapplication.data.api.BookApiService
+import com.example.mybookapplication.data.api.response.BookResponse
 import com.example.mybookapplication.domain.entity.Book
 import com.example.mybookapplication.domain.repository.BookRepository
 import kotlinx.coroutines.flow.Flow
@@ -13,17 +14,7 @@ class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepo
         emit(response)
     }.map {responses ->
         responses.map {response ->
-            Book(
-                id = response.id,
-                title = response.title,
-                author = response.author,
-                genre = response.genre,
-                description = response.description,
-                releaseYear = response.releaseYear,
-                ageLimit = response.ageLimit,
-                cover = response.cover,
-                pages = response.pages
-            )
+            transformBook(response)
         }
     }
 
@@ -32,17 +23,7 @@ class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepo
         emit(response)
     }.map { responses ->
         responses.map { response ->
-            Book(
-                id = response.id,
-                title = response.title,
-                author = response.author,
-                genre = response.genre,
-                description = response.description,
-                releaseYear = response.releaseYear,
-                ageLimit = response.ageLimit,
-                cover = response.cover,
-                pages = response.pages
-            )
+            transformBook(response)
         }
     }
 
@@ -51,19 +32,21 @@ class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepo
         emit(response)
     }.map { responses ->
         responses.map { response ->
-            Book(
-                id = response.id,
-                title = response.title,
-                author = response.author,
-                genre = response.genre,
-                description = response.description,
-                releaseYear = response.releaseYear,
-                ageLimit = response.ageLimit,
-                cover = response.cover,
-                pages = response.pages
-            )
+            transformBook(response)
         }
     }
 
-
+    private fun transformBook(response: BookResponse) : Book{
+        return Book(
+            id = response.id,
+            title = response.title,
+            author = response.author,
+            genre = response.genre,
+            description = response.description,
+            releaseYear = response.releaseYear,
+            ageLimit = response.ageLimit,
+            cover = response.cover,
+            pages = response.pages
+        )
+    }
 }

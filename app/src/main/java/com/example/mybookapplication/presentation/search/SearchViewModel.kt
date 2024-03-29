@@ -21,7 +21,8 @@ class SearchViewModel(
     context: Application, private val fetchBooksByTitleOrAuthorUseCase: FetchBooksByTitleOrAuthorUseCase) : AndroidViewModel(context){
     val viewState = MutableStateFlow<ViewState<List<Book>>>(ViewState.Loading)
 
-    fun fetchBooksByTitleOrAuthor(titleOrAuthor : String) {
+    fun fetchBooksByTitleOrAuthor(query : String) {
+        val titleOrAuthor = query.trim().replace("\\s+".toRegex(), " ")
         viewModelScope.launch {
             fetchBooksByTitleOrAuthorUseCase(titleOrAuthor)
                 .onStart { viewState.value = ViewState.Loading}

@@ -2,6 +2,7 @@ package com.example.mybookapplication.data.prefs
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.example.mybookapplication.domain.entity.UserProfile
 import javax.inject.Inject
 
@@ -33,6 +34,7 @@ class PrefsDataSourceImpl @Inject constructor(private val context : Context) : P
             putString(emailKey, userProfile.email)
             putString(usernameKey, userProfile.username)
             putString(avatarKey, userProfile.avatar)
+            apply()
         }
     }
 
@@ -47,6 +49,13 @@ class PrefsDataSourceImpl @Inject constructor(private val context : Context) : P
             username = prefs.getString(usernameKey, "") ?: "",
             avatar = prefs.getString(avatarKey, "") ?: ""
         )
+    }
+
+    override fun deleteUserProfile() {
+        val prefs = context.getSharedPreferences(
+            sessionPrefs, Context.MODE_PRIVATE
+        )
+        prefs.edit().clear().apply()
     }
 
     companion object {
@@ -64,4 +73,5 @@ interface PrefsDataSource {
     fun fetchToken() : String?
     fun saveUserProfile(userProfile: UserProfile)
     fun fetchUserProfile(): UserProfile
+    fun deleteUserProfile()
 }

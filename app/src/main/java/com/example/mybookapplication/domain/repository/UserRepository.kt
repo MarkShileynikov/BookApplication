@@ -5,4 +5,5 @@ import com.example.mybookapplication.domain.util.Event
 
 interface UserRepository {
     suspend fun fetchUserProfile() : Event<UserProfile>
+    suspend fun deleteUserProfile()
 }

@@ -47,5 +47,11 @@
     <string name="hide">Скрыть</string>
     <string name="review">Отзывы</string>
     <string name="mark">Оценка:</string>
+    <string name="fantasy">Фэнтези</string>
+    <string name="fiction">Художественная литература</string>
+    <string name="classic">Классика</string>
+    <string name="user_profile">Учетная запись</string>
+    <string name="logout">Выйти из аккаунта</string>
+
 
 </resources>

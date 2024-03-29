@@ -28,7 +28,7 @@ class BookListViewModel(context: Application, private val fetchBooksByGenreUseCa
                 .onStart { viewState.value = ViewState.Loading }
                 .catch {
                     viewState.value =
-                        ViewState.Failure("Книги не найдены")
+                        ViewState.Failure("No books found")
                 } 
                 .collect { books ->
                     viewState.value = ViewState.Success(books)

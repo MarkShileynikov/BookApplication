@@ -17,4 +17,8 @@ class UserRepositoryImpl(private val prefsDataSource: PrefsDataSourceImpl) : Use
             Event.Failure("User is not valid")
         }
     }
+
+    override suspend fun deleteUserProfile() {
+        prefsDataSource.deleteUserProfile()
+    }
 }

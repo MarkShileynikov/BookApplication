@@ -36,8 +36,8 @@ class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListene
     private lateinit var recyclerView : RecyclerView
     private val viewModel : SearchViewModel by viewModels { SearchViewModel.searchViewModelFactory }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        bindViews(view)
         super.onViewCreated(view, savedInstanceState)
+        bindViews(view)
     }
     private fun bindViews(view : View) {
         searchView = view.findViewById(R.id.bookSearchView)
@@ -51,12 +51,12 @@ class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListene
     }
 
     private fun setUpGenreList() {
-        val genres : List<String> = listOf("Фэнтези", "Художественная литература", "Классика")
+        val genres : List<String> = listOf(getString(R.string.fantasy), getString(R.string.fiction), getString(R.string.classic))
         genreAdapter = GenreAdapter(genres, this)
         recyclerView.adapter = genreAdapter
     }
 
-    fun setUpSearch(view : View) {
+    private fun setUpSearch(view : View) {
         searchView.addTextChangedListener(object : TextWatcher {
             private var searchJob: Job? = null
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -69,7 +69,7 @@ class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListene
                 if (query.isNotBlank()) {
                     searchJob = lifecycleScope.launch {
                         delay(300)
-                        viewModel.fetchBooksByTitleOrAuthor(query.trim().replace("\\s+".toRegex(), " "))
+                        viewModel.fetchBooksByTitleOrAuthor(query)
                         viewModel.viewState.collect {
                             when(it) {
                                 is ViewState.Success -> {
