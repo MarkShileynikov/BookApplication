@@ -121,6 +121,17 @@
                 tools:text="16+"
                 android:textColor="@color/light_grey"/>
 
+            <TextView
+                android:id="@+id/releaseYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toEndOf="@id/cover"
+                app:layout_constraintTop_toBottomOf="@id/ageLimit"
+                tools:text="1992 год"
+                android:textColor="@color/light_grey"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button

@@ -2,6 +2,7 @@ package com.example.mybookapplication.presentation.signup
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -31,11 +32,20 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         binding.signUp.setOnClickListener {
-            viewModel.onSignUpButtonClicked(
-                email = binding.emailView.text.toString(),
-                password = binding.passwordView.text.toString(),
-                username = binding.usernameView.text.toString()
-            )
+            val email = binding.emailView.text.toString()
+            val password = binding.passwordView.text.toString()
+            val username = binding.usernameView.text.toString()
+            if (viewModel.isPasswordValid(password)) {
+                viewModel.onSignUpButtonClicked(
+                    email = email,
+                    password = password,
+                    username = username
+                )
+            } else {
+                binding.error.visibility = View.VISIBLE
+                binding.error.text = getString(R.string.password_is_not_valid)
+            }
+
         }
         binding.signIn.setOnClickListener {
             moveToSignInScreen()
@@ -55,7 +65,8 @@ class SignUpActivity : AppCompatActivity() {
                         }
                         is SignUpViewState.Failure -> {
                             binding.signUp.isEnabled = true
-                            Toast.makeText(this@SignUpActivity, it.message, Toast.LENGTH_SHORT).show()
+                            binding.error.visibility = View.VISIBLE
+                            binding.error.text = it.message
                         }
                         is SignUpViewState.Idle -> {}
                     }

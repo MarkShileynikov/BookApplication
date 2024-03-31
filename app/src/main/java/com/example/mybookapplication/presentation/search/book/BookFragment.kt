@@ -43,9 +43,10 @@ class BookFragment : Fragment() {
             placeholder(R.drawable.default_cover)
             crossfade(true)
         }
-        binding.pagesCount.text = "${book?.pages} печатных стр."
+        binding.pagesCount.text = "${book?.pages} ${getString(R.string.printed_pages)}"
         binding.ageLimit.text = "${book?.ageLimit}+"
         binding.description.text = book?.description
+        binding.releaseYear.text = "${book?.releaseYear} ${getString(R.string.year)}"
 
         binding.description.post {
             val linesCount = binding.description.lineCount

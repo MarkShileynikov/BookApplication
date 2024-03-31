@@ -8,5 +8,5 @@ data class SignUpResponse(
     @SerializedName("email")
     val email: String,
     @SerializedName("username")
-    val username: String?
+    val username: String
 )

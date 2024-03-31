@@ -19,5 +19,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:background">@color/card_background</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
 
 </resources>

@@ -31,7 +31,7 @@
     <string name="search">Поиск</string>
     <string name="what_to_choose">Что выбрать</string>
     <string name="signin">Войти</string>
-    <string name="email">Почта</string>
+    <string name="mail">Почта</string>
     <string name="password">Пароль</string>
     <string name="register">Зарегистрироваться</string>
     <string name="registration">Регистрация</string>
@@ -50,8 +50,30 @@
     <string name="fantasy">Фэнтези</string>
     <string name="fiction">Художественная литература</string>
     <string name="classic">Классика</string>
+    <string name="fantastic">Фантастика</string>
+    <string name="roman">Роман</string>
     <string name="user_profile">Учетная запись</string>
     <string name="logout">Выйти из аккаунта</string>
-
+    <string name="printed_pages">печатных стр.</string>
+    <string name="year">год</string>
+    <string name="sign_out_alert">Вы действительно хотите выйти из аккаунта?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Отмена</string>
+    <string name="account">Учетная запись</string>
+    <string name="change_photo">Сменить фото</string>
+    <string name="your_data">Ваши данные</string>
+    <string name="username">Имя пользователя</string>
+    <string name="save">Сохранить</string>
+    <string name="email">Электронная почта</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="old_password">Старый пароль</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="change">Изменить</string>
+    <string name="invalid_email">Неверный email</string>
+    <string name="invalid_email_or_password">Неверный email или пароль</string>
+    <string name="fill_all_fields">Заполните все поля</string>
+    <string name="email_already_exists">Пользователь с таким email уже существует</string>
+    <string name="username_already_exists">Пользователь с таким именем уже существует</string>
+    <string name="password_is_not_valid">Пароль должен иметь длину не менее 8 символов и содержать хотя бы одну букву</string>
 
 </resources>

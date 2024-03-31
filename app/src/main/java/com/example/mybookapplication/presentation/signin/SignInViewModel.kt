@@ -35,13 +35,13 @@ class SignInViewModel(context : Application, private val signInUseCase: SignInUs
     companion object {
         val signInViewModelFactory : ViewModelProvider.Factory = viewModelFactory {
             initializer {
+                val context = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App
                 val authApiService = NetworkClient.provideAuthApiService()
-                val prefsDataSource = PrefsDataSourceImpl(this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App)
-                val sessionRepository = SessionRepositoryImpl(authApiService, prefsDataSource)
-                val signInUseCase = SignInUseCase(sessionRepository)
+                val prefsDataSource = PrefsDataSourceImpl(context)
+                val sessionRepository = SessionRepositoryImpl(context, authApiService, prefsDataSource)
+                val signInUseCase = SignInUseCase(context, sessionRepository)
                 return@initializer SignInViewModel(
-                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App,
-                    signInUseCase
+                    context, signInUseCase
                 )
             }
         }

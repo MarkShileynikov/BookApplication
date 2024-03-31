@@ -1,9 +1,12 @@
 package com.example.mybookapplication.data.api.util
 
+import android.content.Context
+import android.util.Log
+import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.util.Event
 import retrofit2.Response
 
-suspend fun <T : Any> doCall(call: suspend () -> Response<T>): Event<T> {
+suspend fun <T : Any> doCall(context : Context, call: suspend () -> Response<T>): Event<T> {
     val response = call()
     return if (response.isSuccessful) {
         val body = response.body()
@@ -15,9 +18,13 @@ suspend fun <T : Any> doCall(call: suspend () -> Response<T>): Event<T> {
     } else {
         val errorBody = response.errorBody()?.string()
         if (!errorBody.isNullOrBlank()) {
-            val apiError = errorBody.toApiError()
-            // TODO: by default we take backendless message, but you can write any code to use you custom message.
-            //  This is the right place to do it
+            var apiError = errorBody.toApiError()
+            when(apiError.errorCode) {
+                3040 -> apiError.message = context.getString(R.string.invalid_email)
+                3003 -> apiError.message = context.getString(R.string.invalid_email_or_password)
+                3033 -> apiError.message = context.getString(R.string.email_already_exists)
+                1155 -> apiError.message = context.getString(R.string.username_already_exists)
+            }
             Event.Failure(apiError.message)
         } else {
             Event.Failure("Unknown error")

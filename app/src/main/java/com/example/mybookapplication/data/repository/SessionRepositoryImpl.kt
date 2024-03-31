@@ -1,5 +1,6 @@
 package com.example.mybookapplication.data.repository
 
+import android.content.Context
 import com.example.mybookapplication.data.api.AuthApiService
 import com.example.mybookapplication.data.api.request.SignInRequest
 import com.example.mybookapplication.data.api.request.SignUpRequest
@@ -14,10 +15,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class SessionRepositoryImpl(
+    private val context : Context,
     private val authApiService: AuthApiService,
     private val prefsDataSource: PrefsDataSourceImpl) : SessionRepository {
     override suspend fun signIn(email: String, password: String): Event<Session> {
-        val event = doCall{
+        val event = doCall(context){
             val request = SignInRequest(email, password)
             return@doCall authApiService.signIn(request)
         }
@@ -43,7 +45,7 @@ class SessionRepositoryImpl(
     }
 
     override suspend fun signUp(email: String, password: String, username: String): Event<Session> {
-        val event = doCall {
+        val event = doCall(context) {
             val request = SignUpRequest(email = email, password = password, username = username)
             return@doCall authApiService.signUp(request)
         }
@@ -56,7 +58,7 @@ class SessionRepositoryImpl(
                     userProfile = UserProfile(
                         userId = response.id,
                         email = response.email,
-                        username = response.username ?: "",
+                        username = response.username,
                         avatar = null
                     )
                 )

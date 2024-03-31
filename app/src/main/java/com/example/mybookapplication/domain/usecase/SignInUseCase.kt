@@ -1,5 +1,7 @@
 package com.example.mybookapplication.domain.usecase
 
+import android.content.Context
+import com.example.mybookapplication.R
 import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.domain.entity.Session
 import com.example.mybookapplication.domain.util.Event
@@ -7,7 +9,7 @@ import com.example.mybookapplication.domain.util.UseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class SignInUseCase(private val sessionRepository: SessionRepositoryImpl) : UseCase<SignInUseCase.Params, Session> {
+class SignInUseCase(private val context : Context, private val sessionRepository: SessionRepositoryImpl) : UseCase<SignInUseCase.Params, Session> {
     data class Params(
         val email: String,
         val password: String,
@@ -16,7 +18,7 @@ class SignInUseCase(private val sessionRepository: SessionRepositoryImpl) : UseC
     override suspend fun invoke(params: Params): Flow<Session> = flow {
         val email = params.email
         val password = params.password
-        if (email.isNotEmpty() && password.isNotEmpty()) {
+        if (email.isNotBlank() && password.isNotBlank()) {
             val event =
                 sessionRepository.signIn(email = email, password = password)
             when(event) {
@@ -31,7 +33,7 @@ class SignInUseCase(private val sessionRepository: SessionRepositoryImpl) : UseC
                 }
             }
         } else {
-            throw Exception("Email or password are wrong")
+            throw Exception(context.getString(R.string.fill_all_fields))
         }
     }
 }

@@ -30,7 +30,7 @@ class SplashViewModel(context : Application, private val fetchSessionUseCase: Fe
     private fun verifySession() {
         viewModelScope.launch {
             fetchSessionUseCase()
-                .onStart { delay(twoSeconds) }
+                .onStart { delay(1000) }
                 .catch {
                     viewState.value =
                         SplashViewState.Failure
@@ -49,17 +49,16 @@ class SplashViewModel(context : Application, private val fetchSessionUseCase: Fe
     companion object {
         val splashViewModelFactory : ViewModelProvider.Factory = viewModelFactory {
             initializer {
+                val context = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App
                 val authApiService = NetworkClient.provideAuthApiService()
-                val prefsDataSource = PrefsDataSourceImpl(this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App)
-                val sessionRepository = SessionRepositoryImpl(authApiService, prefsDataSource)
+                val prefsDataSource = PrefsDataSourceImpl(context)
+                val sessionRepository = SessionRepositoryImpl(context, authApiService, prefsDataSource)
                 val fetchSessionUseCase = FetchSessionUseCase(sessionRepository)
                 return@initializer SplashViewModel(
-                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App,
-                    fetchSessionUseCase
+                    context, fetchSessionUseCase
                 )
             }
         }
-        val twoSeconds: Duration = 2.seconds
     }
 
 }

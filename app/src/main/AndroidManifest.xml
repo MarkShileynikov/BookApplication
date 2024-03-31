@@ -29,6 +29,8 @@
         <activity android:name=".presentation.bottomnavigation.MainActivity"/>
         <activity android:name=".presentation.signin.SignInActivity"/>
         <activity android:name=".presentation.signup.SignUpActivity"/>
+        <activity android:name=".presentation.profile.settings.editprofile.EditProfileActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
     </application>
 

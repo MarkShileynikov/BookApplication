@@ -2,6 +2,7 @@ package com.example.mybookapplication.presentation.signin
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -36,7 +37,6 @@ class SignInActivity : AppCompatActivity() {
                 email = binding.emailView.text.toString(),
                 password = binding.passwordView.text.toString()
             )
-
         }
     }
 
@@ -53,7 +53,8 @@ class SignInActivity : AppCompatActivity() {
                         }
                         is SignInViewState.Failure -> {
                             binding.signIn.isEnabled = true
-                            Toast.makeText(this@SignInActivity, it.message, Toast.LENGTH_SHORT).show()
+                            binding.error.visibility = View.VISIBLE
+                            binding.error.text = it.message
                         }
                         is SignInViewState.Idle -> {}
                     }

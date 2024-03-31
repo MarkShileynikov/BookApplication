@@ -30,7 +30,6 @@ class SignUpViewModel(context : Application, private val signUpUseCase: SignUpUs
                     viewState.value = SignUpViewState.Failure(it.message ?: "Something went wrong.")
                 }
                 .collect { _ ->
-                    // sign up response doesn't return user-token!!! we have to do manual sign in
                     signIn(email, password)
                 }
         }
@@ -47,17 +46,22 @@ class SignUpViewModel(context : Application, private val signUpUseCase: SignUpUs
         }
     }
 
+    fun isPasswordValid(password: String) : Boolean{
+        val passwordRegex = Regex("^(?=.*[A-Za-z]).{8,}\$")
+        return passwordRegex.matches(password)
+    }
+
     companion object {
         val signUpViewModelFactory : ViewModelProvider.Factory = viewModelFactory {
             initializer {
+                val context = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App
                 val authApiService = NetworkClient.provideAuthApiService()
-                val prefsDataSource = PrefsDataSourceImpl(this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App)
-                val sessionRepository = SessionRepositoryImpl(authApiService, prefsDataSource)
-                val signUpUseCase = SignUpUseCase(sessionRepository)
-                val signInUseCase = SignInUseCase(sessionRepository)
+                val prefsDataSource = PrefsDataSourceImpl(context)
+                val sessionRepository = SessionRepositoryImpl(context, authApiService, prefsDataSource)
+                val signUpUseCase = SignUpUseCase(context, sessionRepository)
+                val signInUseCase = SignInUseCase(context, sessionRepository)
                 return@initializer SignUpViewModel(
-                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App,
-                    signUpUseCase, signInUseCase
+                    context, signUpUseCase, signInUseCase
                 )
             }
         }

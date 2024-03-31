@@ -7,7 +7,7 @@ data class ApiError(
     @SerializedName("code")
     val errorCode: Int,
     @SerializedName("message")
-    val message: String,
+    var message: String,
 )
 
 fun String.toApiError(): ApiError = Gson().fromJson(this, ApiError::class.java)

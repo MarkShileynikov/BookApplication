@@ -120,11 +120,25 @@ Xapp/src/main/java/com/example/mybookapplication/presentation/profile/ProfileVie
 Yapp/src/main/java/com/example/mybookapplication/presentation/search/book/BookViewModel.kt,c\e\cee83e934784e02e275bf022c3b515d296d95288
 ‘
 aapp/src/main/java/com/example/mybookapplication/presentation/search/booklist/BookListViewModel.kt,5\8\58fd3c36a3e5de5f4dd797c7676fa87af348c342
-‘
-aapp/src/main/java/com/example/mybookapplication/presentation/profile/settings/FragmentSettings.kt,d\3\d36428fe095d675bd615f8733e951b01da70fc11
 €
 Papp/src/main/java/com/example/mybookapplication/domain/usecase/SignOutUseCase.kt,a\2\a25fc3ed2e75c99ded07989fee9d37c0737449de
 ‘
 aapp/src/main/java/com/example/mybookapplication/presentation/profile/settings/SettingsFragment.kt,a\a\aa90f012f219caac2dc905b999cc8cb5a3bae198
 ’
 bapp/src/main/java/com/example/mybookapplication/presentation/profile/settings/SettingsViewModel.kt,0\c\0c3094c957210169dfdc9fdd88102c47d46c1234
+ 
+papp/src/main/java/com/example/mybookapplication/presentation/profile/settings/editprofile/EditProfileActivity.kt,4\3\43935fab02fef61a391290a5ee74eccdd479302e
+†
+Vapp/src/main/java/com/example/mybookapplication/data/api/request/UserProfileRequest.kt,4\a\4a49fb54d99caa45e01434b06685ee747cbe48b8
+ˆ
+Xapp/src/main/java/com/example/mybookapplication/data/api/response/UserProfileResponse.kt,1\d\1dd42b4ea1109d1d193ac6173e21f2de389cd28a
+€
+Papp/src/main/java/com/example/mybookapplication/data/api/UpdateUserApiService.kt,3\2\32133c030a4a0e796a53a91f13efa771542bf24b
+‰
+Yapp/src/main/java/com/example/mybookapplication/domain/repository/UpdateUserRepository.kt,9\9\999320ea9e48cbb7a50b0efc5c570ca646cb439e
+‹
+[app/src/main/java/com/example/mybookapplication/data/repository/UpdateUserRepositoryImpl.kt,2\1\21d8afb6b07dc30c3193d9edf139191a7e5523f2
+ƒ
+Sapp/src/main/java/com/example/mybookapplication/domain/usecase/UpdateUserUseCase.kt,9\2\926a4a63a6c3700103277518ae7a4dff050a49a6
+ˆ
+Xapp/src/main/java/com/example/mybookapplication/presentation/util/IsInternetAvailable.kt,7\7\775b705346fd86c29c11c0c366314c2c8b5b8d66
