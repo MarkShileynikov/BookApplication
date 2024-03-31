@@ -106,8 +106,18 @@
                     android:backgroundTint="@color/yellow_button"
                     android:maxLines="1"/>
 
+                <TextView
+                    android:id="@+id/error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    tools:text="Пользователь с таким именем уже существует"
+                    android:textColor="@color/red"
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
+
                 <FrameLayout
-                    android:id="@+id/editUsernameButton"
+                    android:id="@+id/savetUsernameButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"

@@ -1,6 +1,7 @@
 package com.example.mybookapplication.presentation.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,12 +39,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews()
-        observeUserProfile()
     }
+
+
     private fun bindViews() {
         binding.settingsButton.setOnClickListener {
             moveToSettingsScreen()
         }
+        viewModel.fetchUserProfile()
+        observeUserProfile()
     }
 
     private fun observeUserProfile() {
@@ -69,9 +73,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.authorizationButton.visibility = View.GONE
     }
     private fun moveToSettingsScreen() {
-        val bundle = Bundle()
-        bundle.putParcelable(USER_PROFILE_KEY, userProfile)
-        findNavController().navigate(R.id.action_profileFragment_to_fragmentSettings, bundle)
+        findNavController().navigate(R.id.action_profileFragment_to_fragmentSettings)
     }
 
 }

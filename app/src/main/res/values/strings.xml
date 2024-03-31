@@ -75,5 +75,7 @@
     <string name="email_already_exists">Пользователь с таким email уже существует</string>
     <string name="username_already_exists">Пользователь с таким именем уже существует</string>
     <string name="password_is_not_valid">Пароль должен иметь длину не менее 8 символов и содержать хотя бы одну букву</string>
+    <string name="no_internet_connection">Нет подключения к интернету</string>
+    <string name="username_successfully_updated">Имя пользователя успешно обновлено</string>
 
 </resources>

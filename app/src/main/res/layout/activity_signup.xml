@@ -7,18 +7,10 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <ImageView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:src="@drawable/close"
-        app:tint="@color/orange"
-        android:layout_gravity="end"
-        android:visibility="invisible"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/registration"
         android:textColor="@color/text_color"
         android:textStyle="bold"
@@ -79,7 +71,7 @@
         tools:text="Неверный email или пароль"
         android:textColor="@color/red"
         android:textSize="16sp"
-        android:visibility="gone"/>
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/signUp"

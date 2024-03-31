@@ -13,6 +13,7 @@ import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.ActivitySigninBinding
 import com.example.mybookapplication.presentation.bottomnavigation.MainActivity
 import com.example.mybookapplication.presentation.signup.SignUpActivity
+import com.example.mybookapplication.presentation.util.isConnectedToNetwork
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -35,7 +36,8 @@ class SignInActivity : AppCompatActivity() {
         binding.signIn.setOnClickListener {
             viewModel.onSignInButtonClicked(
                 email = binding.emailView.text.toString(),
-                password = binding.passwordView.text.toString()
+                password = binding.passwordView.text.toString(),
+                context = this
             )
         }
     }

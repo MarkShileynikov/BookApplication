@@ -35,15 +35,16 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.emailView.text.toString()
             val password = binding.passwordView.text.toString()
             val username = binding.usernameView.text.toString()
-            if (viewModel.isPasswordValid(password)) {
+            try {
                 viewModel.onSignUpButtonClicked(
                     email = email,
                     password = password,
-                    username = username
+                    username = username,
+                    context = this
                 )
-            } else {
+            } catch (e: Exception) {
                 binding.error.visibility = View.VISIBLE
-                binding.error.text = getString(R.string.password_is_not_valid)
+                binding.error.text = e.message
             }
 
         }

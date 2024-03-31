@@ -30,4 +30,7 @@ object NetworkClient {
 
     fun provideAuthApiService(): AuthApiService =
         retrofit.create(AuthApiService::class.java)
+
+    fun provideUpdateUserApiService() : UpdateUserApiService =
+        retrofit.create(UpdateUserApiService::class.java)
 }

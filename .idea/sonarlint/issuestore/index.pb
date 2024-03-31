@@ -140,5 +140,15 @@ Yapp/src/main/java/com/example/mybookapplication/domain/repository/UpdateUserRep
 [app/src/main/java/com/example/mybookapplication/data/repository/UpdateUserRepositoryImpl.kt,2\1\21d8afb6b07dc30c3193d9edf139191a7e5523f2
 É
 Sapp/src/main/java/com/example/mybookapplication/domain/usecase/UpdateUserUseCase.kt,9\2\926a4a63a6c3700103277518ae7a4dff050a49a6
-à
-Xapp/src/main/java/com/example/mybookapplication/presentation/util/IsInternetAvailable.kt,7\7\775b705346fd86c29c11c0c366314c2c8b5b8d66
+Å
+Qapp/src/main/java/com/example/mybookapplication/presentation/util/NetworkUtils.kt,4\9\499903219da57ae8a007dbbcc9b79cadf97768ca
+°
+qapp/src/main/java/com/example/mybookapplication/presentation/profile/settings/editprofile/EditProfileViewModel.kt,0\f\0f07cfb30fe3ae726c0da29259a8327387ef8ccd
+â
+Yapp/src/main/java/com/example/mybookapplication/data/api/request/UpdateUsernameRequest.kt,f\4\f4d58b0725dc76f354ff8c91535a231caa2be930
+á
+Wapp/src/main/java/com/example/mybookapplication/domain/usecase/UpdateUsenamerUseCase.kt,8\f\8f809c927d4613785ade32763ac87dfc3ab8719d
+Ü
+Vapp/src/main/java/com/example/mybookapplication/domain/usecase/UpdateUsenameUseCase.kt,f\c\fce27f6a1c8355a2f3a76bf88a623a8bee3dff14
+á
+Wapp/src/main/java/com/example/mybookapplication/domain/usecase/UpdateUsernameUseCase.kt,8\e\8ea527da0e07aa78f6f19d2076f2b49dd6f71c70

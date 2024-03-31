@@ -20,11 +20,8 @@ import kotlinx.coroutines.launch
 class ProfileViewModel(context : Application, private val fetchUserProfileUseCase: FetchUserProfileUseCase) : AndroidViewModel(context) {
     private val _userProfile = MutableStateFlow<Event<UserProfile>>(Event.Failure("No profile found"))
     val userProfile: StateFlow<Event<UserProfile>> get() = _userProfile
-    init {
-        fetchUserProfile()
-    }
 
-    private fun fetchUserProfile() {
+    fun fetchUserProfile() {
         viewModelScope.launch {
             fetchUserProfileUseCase()
                 .catch {

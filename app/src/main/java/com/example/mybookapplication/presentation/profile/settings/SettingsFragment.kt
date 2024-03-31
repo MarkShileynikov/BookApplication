@@ -1,26 +1,34 @@
 package com.example.mybookapplication.presentation.profile.settings
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.FragmentSettingsBinding
 import com.example.mybookapplication.domain.entity.UserProfile
+import com.example.mybookapplication.domain.util.Event
 import com.example.mybookapplication.presentation.profile.ProfileFragment
 import com.example.mybookapplication.presentation.profile.settings.editprofile.EditProfileActivity
 import com.example.mybookapplication.presentation.signin.SignInActivity
+import kotlinx.coroutines.launch
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
     private val viewModel : SettingsViewModel by viewModels { SettingsViewModel.settingsViewModelFactory }
+    private lateinit var user: UserProfile
 
     companion object {
         const val USER_PROFILE_KEY = "USER_PROFILE_KEY"
@@ -39,10 +47,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         bindViews()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.fetchUserProfile()
+        observeUserProfile()
+    }
     private fun bindViews() {
-        val user = getUserProfile()
-        binding.email.text = user?.email
-        binding.userName.text = user?.username
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -54,8 +64,25 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
     }
 
-    private fun getUserProfile() : UserProfile? {
-        return arguments?.getParcelable(ProfileFragment.USER_PROFILE_KEY)
+    private fun observeUserProfile() {
+        lifecycleScope.launch {
+            viewModel.userProfile.collect {
+                when(it) {
+                    is Event.Success -> {
+                        user = it.data
+                        setUpProfile(user)
+                    }
+                    is Event.Failure -> {
+
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setUpProfile(user: UserProfile) {
+        binding.email.text = user.email
+        binding.userName.text = user.username
     }
 
     private fun signOut() {
@@ -68,7 +95,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         activity?.finish()
     }
 
-    private fun moveToEditProfileScreen(user : UserProfile?) {
+    private fun moveToEditProfileScreen(user : UserProfile) {
         val intent = Intent(requireActivity(), EditProfileActivity::class.java)
         intent.putExtra(USER_PROFILE_KEY, user)
         startActivity(intent)
@@ -93,7 +120,14 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             val dialog = builder.create()
 
             dialog.show()
-
         }
     }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
+        Log.d("onDestroy", "onDestroy")
+    }
+
+
 }
