@@ -12,7 +12,6 @@ import com.example.mybookapplication.databinding.ActivityEditProfileBinding
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.presentation.profile.settings.SettingsFragment
 import com.example.mybookapplication.presentation.util.ViewState
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class EditProfileActivity: AppCompatActivity(R.layout.activity_edit_profile) {

@@ -26,7 +26,7 @@
     <string name="my_bookshelf_description">У вас нет ни одной полки, и самое время создать первую</string>
     <string name="create_bookshelf">Создать полку</string>
     <string name="my_reviews">Мои отзывы</string>
-    <string name="reviews">отзывов</string>
+    <string name="reviewss">отзывов</string>
     <string name="profile">Профиль</string>
     <string name="search">Поиск</string>
     <string name="what_to_choose">Что выбрать</string>
@@ -45,7 +45,7 @@
     <string name="about_book">О книге</string>
     <string name="read_more">Читать далее</string>
     <string name="hide">Скрыть</string>
-    <string name="review">Отзывы</string>
+    <string name="reviews">Отзывы</string>
     <string name="mark">Оценка:</string>
     <string name="fantasy">Фэнтези</string>
     <string name="fiction">Художественная литература</string>
@@ -77,5 +77,24 @@
     <string name="password_is_not_valid">Пароль должен иметь длину не менее 8 символов и содержать хотя бы одну букву</string>
     <string name="no_internet_connection">Нет подключения к интернету</string>
     <string name="username_successfully_updated">Имя пользователя успешно обновлено</string>
+    <string name="review">Отзыв</string>
+    <string name="publish">Опубликовать</string>
+    <string name="review_hint">Напишите, что понравилось, а что нет</string>
+    <string name="make_review">Написать отзыв</string>
+    <string name="estimation">Оценка(от 1 до 5)</string>
+    <string name="review_publish_error">При публикации отзыва произошла ошибка</string>
+    <string name="no_reviews">Отзывов нет</string>
+    <string name="check_internet_connection">Проверьте подключение к интернету</string>
+    <string name="already_reviewed">Вы уже написали отзыв на эту книгу</string>
+    <plurals name="readers_singular">
+        <item quantity="one">%d читатель оценил</item>
+        <item quantity="few">%d читателя оценили</item>
+        <item quantity="other">%d читателей оценили</item>
+    </plurals>
+    <plurals name="readers_plural">
+        <item quantity="one">%d читатель оценил</item>
+        <item quantity="few">%d читателя оценили</item>
+        <item quantity="other">%d читателей оценили</item>
+    </plurals>
 
 </resources>

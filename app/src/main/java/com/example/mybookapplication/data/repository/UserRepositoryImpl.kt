@@ -1,7 +1,5 @@
 package com.example.mybookapplication.data.repository
 
-import com.example.mybookapplication.data.api.AuthApiService
-import com.example.mybookapplication.data.prefs.PrefsDataSource
 import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.entity.isValid

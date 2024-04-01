@@ -13,22 +13,20 @@ import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.usecase.FetchUserProfileUseCase
 import com.example.mybookapplication.domain.util.Event
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(context : Application, private val fetchUserProfileUseCase: FetchUserProfileUseCase) : AndroidViewModel(context) {
-    private val _userProfile = MutableStateFlow<Event<UserProfile>>(Event.Failure("No profile found"))
-    val userProfile: StateFlow<Event<UserProfile>> get() = _userProfile
+    val viewState = MutableStateFlow<Event<UserProfile>>(Event.Failure("No profile found"))
 
     fun fetchUserProfile() {
         viewModelScope.launch {
             fetchUserProfileUseCase()
                 .catch {
-                    _userProfile.value = Event.Failure("No profile found")
+                    viewState.value = Event.Failure("No profile found")
                 }
                 .collect { userProfile ->
-                    _userProfile.value = userProfile
+                    viewState.value = userProfile
                 }
         }
     }

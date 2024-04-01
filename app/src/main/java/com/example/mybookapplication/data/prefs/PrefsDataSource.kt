@@ -1,8 +1,6 @@
 package com.example.mybookapplication.data.prefs
 
-import android.app.Application
 import android.content.Context
-import android.util.Log
 import com.example.mybookapplication.domain.entity.UserProfile
 import javax.inject.Inject
 

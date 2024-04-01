@@ -10,7 +10,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.mybookapplication.R
 import com.example.mybookapplication.presentation.bottomnavigation.MainActivity
 import com.example.mybookapplication.presentation.signin.SignInActivity
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class SplashView : AppCompatActivity(R.layout.activity_splash) {

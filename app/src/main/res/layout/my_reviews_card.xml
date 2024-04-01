@@ -42,7 +42,7 @@
             app:layout_constraintTop_toBottomOf="@id/myReviews"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/reviewsCount"
-            android:text="@string/reviews"
+            android:text="@string/reviewss"
             android:textSize="12sp"
             android:textColor="@color/grey"/>
 

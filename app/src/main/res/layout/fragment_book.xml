@@ -7,7 +7,6 @@
     android:overScrollMode="never"
     >
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -165,20 +164,63 @@
             android:text="@string/read_more"
             android:textColor="@color/orange"/>
 
+        <Button
+            android:id="@+id/makeReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/YellowButtonStyle"
+            android:text="@string/make_review"/>
+
+        <TextView
+            android:id="@+id/alreadyRead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/already_reviewed"
+            android:textColor="@color/yellow_button"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:textSize="12sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/review"
+            android:text="@string/reviews"
             android:textColor="@color/text_color"
             android:textStyle="bold"
             android:textSize="18sp"/>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/orange"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reviewList"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="false"/>
+
+        <TextView
+            android:id="@+id/noReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/no_reviews"
+            android:textColor="@color/text_color"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:visibility="gone"/>
 
     </LinearLayout>
-
 
 </ScrollView>

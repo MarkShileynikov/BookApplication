@@ -1,6 +1,5 @@
 package com.example.mybookapplication.presentation.profile.settings
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -11,15 +10,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.FragmentSettingsBinding
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.util.Event
-import com.example.mybookapplication.presentation.profile.ProfileFragment
 import com.example.mybookapplication.presentation.profile.settings.editprofile.EditProfileActivity
 import com.example.mybookapplication.presentation.signin.SignInActivity
 import kotlinx.coroutines.launch
@@ -47,11 +43,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         bindViews()
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         viewModel.fetchUserProfile()
         observeUserProfile()
     }
+
     private fun bindViews() {
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()

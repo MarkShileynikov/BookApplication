@@ -1,7 +1,6 @@
 package com.example.mybookapplication.data.api.util
 
 import android.content.Context
-import android.util.Log
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.util.Event
 import retrofit2.Response
@@ -24,6 +23,7 @@ suspend fun <T : Any> doCall(context : Context, call: suspend () -> Response<T>)
                 3003 -> apiError.message = context.getString(R.string.invalid_email_or_password)
                 3033 -> apiError.message = context.getString(R.string.email_already_exists)
                 1155 -> apiError.message = context.getString(R.string.username_already_exists)
+
             }
             Event.Failure(apiError.message)
         } else {

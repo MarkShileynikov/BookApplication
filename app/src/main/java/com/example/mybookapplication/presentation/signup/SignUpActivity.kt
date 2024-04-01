@@ -3,19 +3,14 @@ package com.example.mybookapplication.presentation.signup
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.mybookapplication.R
-import com.example.mybookapplication.databinding.ActivitySigninBinding
 import com.example.mybookapplication.databinding.ActivitySignupBinding
 import com.example.mybookapplication.presentation.bottomnavigation.MainActivity
 import com.example.mybookapplication.presentation.signin.SignInActivity
-import com.example.mybookapplication.presentation.signin.SignInViewModel
-import com.example.mybookapplication.presentation.signin.SignInViewState
 import kotlinx.coroutines.launch
 
 class SignUpActivity : AppCompatActivity() {

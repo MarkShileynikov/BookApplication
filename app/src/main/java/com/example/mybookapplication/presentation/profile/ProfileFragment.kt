@@ -1,7 +1,6 @@
 package com.example.mybookapplication.presentation.profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +52,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun observeUserProfile() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.userProfile.collect {
+                viewModel.viewState.collect {
                     when(it) {
                         is Event.Success -> {
                             userProfile = it.data

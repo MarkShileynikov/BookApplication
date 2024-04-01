@@ -13,13 +13,9 @@ import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.domain.usecase.FetchSessionUseCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.seconds
 
 class SplashViewModel(context : Application, private val fetchSessionUseCase: FetchSessionUseCase) : AndroidViewModel(context) {
     val viewState = MutableStateFlow<SplashViewState>(SplashViewState.Loading)

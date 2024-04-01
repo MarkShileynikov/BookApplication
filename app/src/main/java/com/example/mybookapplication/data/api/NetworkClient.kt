@@ -4,7 +4,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 object NetworkClient {
     private const val BASE_NOTE_URL = "https://utmostback.backendless.app/api/"
@@ -33,4 +32,7 @@ object NetworkClient {
 
     fun provideUpdateUserApiService() : UpdateUserApiService =
         retrofit.create(UpdateUserApiService::class.java)
+
+    fun provideReviewApiService() : ReviewApiService =
+        retrofit.create(ReviewApiService::class.java)
 }

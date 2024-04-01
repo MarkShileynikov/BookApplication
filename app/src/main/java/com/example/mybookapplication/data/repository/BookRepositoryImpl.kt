@@ -14,7 +14,7 @@ class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepo
         emit(response)
     }.map {responses ->
         responses.map {response ->
-            transformBook(response)
+            transformToBook(response)
         }
     }
 
@@ -23,7 +23,7 @@ class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepo
         emit(response)
     }.map { responses ->
         responses.map { response ->
-            transformBook(response)
+            transformToBook(response)
         }
     }
 
@@ -32,11 +32,11 @@ class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepo
         emit(response)
     }.map { responses ->
         responses.map { response ->
-            transformBook(response)
+            transformToBook(response)
         }
     }
 
-    private fun transformBook(response: BookResponse) : Book{
+    private fun transformToBook(response: BookResponse) : Book{
         return Book(
             id = response.id,
             title = response.title,

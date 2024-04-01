@@ -8,7 +8,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.mybookapplication.App
 import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
-import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.data.repository.UserRepositoryImpl
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.usecase.FetchUserProfileUseCase
