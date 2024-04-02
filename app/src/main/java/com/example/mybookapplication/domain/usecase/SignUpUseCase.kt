@@ -4,12 +4,14 @@ import android.content.Context
 import com.example.mybookapplication.R
 import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.domain.entity.Session
+import com.example.mybookapplication.domain.repository.SessionRepository
 import com.example.mybookapplication.domain.util.Event
 import com.example.mybookapplication.domain.util.UseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class SignUpUseCase(private val context : Context ,private val sessionRepository: SessionRepositoryImpl) : UseCase<SignUpUseCase.Params, Session> {
+class SignUpUseCase(private val context : Context ,private val sessionRepository: SessionRepository) : UseCase<SignUpUseCase.Params, Session> {
+
     data class Params(
         val email: String,
         val password: String,

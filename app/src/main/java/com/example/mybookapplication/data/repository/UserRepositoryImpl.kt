@@ -1,6 +1,7 @@
 package com.example.mybookapplication.data.repository
 
 import android.net.Uri
+import com.example.mybookapplication.data.prefs.PrefsDataSource
 import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.entity.isValid
@@ -11,7 +12,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-class UserRepositoryImpl(private val prefsDataSource: PrefsDataSourceImpl) : UserRepository {
+class UserRepositoryImpl(private val prefsDataSource: PrefsDataSource) : UserRepository {
+
     override suspend fun fetchUserProfile(): Event<UserProfile> {
         val userProfile = prefsDataSource.fetchUserProfile()
         return if (userProfile.isValid()) {

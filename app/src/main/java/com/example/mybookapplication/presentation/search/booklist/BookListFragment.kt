@@ -21,17 +21,22 @@ import com.example.mybookapplication.presentation.search.SearchFragment
 import com.example.mybookapplication.presentation.search.booklist.adapter.BookListAdapter
 import com.example.mybookapplication.presentation.search.listener.OnBookClickedListener
 import com.example.mybookapplication.presentation.util.ViewState
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.withCreationCallback
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class BookListFragment : Fragment(), OnBookClickedListener{
     private lateinit var adapter: BookListAdapter
     private lateinit var genre : String
     private lateinit var backButton : ImageView
-    private val viewModel : BookListViewModel by viewModels {
-        BookListViewModel.bookListModelFactory(
-            getGenre()
-        )
-    }
+    private val viewModel : BookListViewModel by viewModels<BookListViewModel>(
+        extrasProducer = {
+            defaultViewModelCreationExtras.withCreationCallback<BookListViewModel.BookListViewModelFactory> {factory ->
+                factory.create(getGenre())
+            }
+        }
+    )
 
     companion object {
         const val BOOK_KEY = "book"
@@ -56,6 +61,7 @@ class BookListFragment : Fragment(), OnBookClickedListener{
 
         observeBooks(view)
     }
+
     private fun getGenre() : String {
         return arguments?.getString(SearchFragment.GENRE_KEY) ?: ""
     }
@@ -102,6 +108,5 @@ class BookListFragment : Fragment(), OnBookClickedListener{
         bundle.putParcelable(BOOK_KEY, book)
         findNavController().navigate(R.id.action_bookListFragment_to_bookFragment, bundle)
     }
-
 
 }

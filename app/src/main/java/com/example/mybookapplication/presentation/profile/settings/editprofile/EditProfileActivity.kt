@@ -30,6 +30,7 @@ class EditProfileActivity: AppCompatActivity(R.layout.activity_edit_profile) {
     private lateinit var binding : ActivityEditProfileBinding
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var requestGalleryLauncher: ActivityResultLauncher<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
@@ -94,6 +95,7 @@ class EditProfileActivity: AppCompatActivity(R.layout.activity_edit_profile) {
         message.setTextColor(getColor(R.color.text_color))
         message.text = getString(R.string.username_successfully_updated)
     }
+
     private fun handleOnFailure(message: String) {
         binding.error.isEnabled = true
         binding.error.visibility = View.VISIBLE

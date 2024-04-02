@@ -25,11 +25,13 @@ class SettingsViewModel(context : Application, private val signOutUseCase: SignO
         fetchUserProfile()
     }
     val userProfile: StateFlow<Event<UserProfile>> get() = _userProfile
+
     fun signOut() {
         viewModelScope.launch {
             signOutUseCase()
         }
     }
+
     fun fetchUserProfile() {
         viewModelScope.launch {
             fetchUserProfileUseCase()

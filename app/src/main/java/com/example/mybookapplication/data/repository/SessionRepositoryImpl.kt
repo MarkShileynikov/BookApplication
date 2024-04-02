@@ -5,6 +5,7 @@ import com.example.mybookapplication.data.api.AuthApiService
 import com.example.mybookapplication.data.api.request.SignInRequest
 import com.example.mybookapplication.data.api.request.SignUpRequest
 import com.example.mybookapplication.data.api.util.doCall
+import com.example.mybookapplication.data.prefs.PrefsDataSource
 import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.domain.entity.Session
 import com.example.mybookapplication.domain.entity.UserProfile
@@ -16,7 +17,9 @@ import kotlinx.coroutines.flow.flow
 class SessionRepositoryImpl(
     private val context : Context,
     private val authApiService: AuthApiService,
-    private val prefsDataSource: PrefsDataSourceImpl) : SessionRepository {
+    private val prefsDataSource: PrefsDataSource
+) : SessionRepository {
+
     override suspend fun signIn(email: String, password: String): Event<Session> {
         val event = doCall(context){
             val request = SignInRequest(email, password)

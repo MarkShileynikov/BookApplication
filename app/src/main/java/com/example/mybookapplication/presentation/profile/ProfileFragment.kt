@@ -14,10 +14,12 @@ import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.FragmentProfileBinding
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.util.Event
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
-    private val viewModel: ProfileViewModel by viewModels { ProfileViewModel.profileViewModelFactory }
+    private val viewModel: ProfileViewModel by viewModels()
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var userProfile: UserProfile
@@ -67,6 +69,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.userName.text = userProfile.username
         binding.authorizationButton.visibility = View.GONE
     }
+
     private fun moveToSettingsScreen() {
         findNavController().navigate(R.id.action_profileFragment_to_fragmentSettings)
     }

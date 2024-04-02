@@ -11,11 +11,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.mybookapplication.databinding.ActivitySigninBinding
 import com.example.mybookapplication.presentation.bottomnavigation.MainActivity
 import com.example.mybookapplication.presentation.signup.SignUpActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySigninBinding
-    private val viewModel : SignInViewModel by viewModels { SignInViewModel.signInViewModelFactory }
+    private val viewModel : SignInViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySigninBinding.inflate(layoutInflater)
@@ -60,10 +62,12 @@ class SignInActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun moveToSignUpScreen() {
         startActivity(Intent(this, SignUpActivity::class.java))
         finish()
     }
+
     private fun moveToMainScreen() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()

@@ -2,6 +2,7 @@ package com.example.mybookapplication.presentation.search.book
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -28,13 +30,15 @@ import com.example.mybookapplication.presentation.search.book.adapter.ReviewAdap
 import com.example.mybookapplication.presentation.search.book.review.ReviewActivity
 import com.example.mybookapplication.presentation.search.booklist.BookListFragment
 import com.example.mybookapplication.presentation.util.ViewState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class BookFragment : Fragment() {
     private var _binding: FragmentBookBinding? = null
     private val binding: FragmentBookBinding get() = _binding!!
     private var isExpanded = false
-    private val viewModel: BookViewModel by viewModels { BookViewModel.bookViewModelFactory }
+    private val viewModel: BookViewModel by viewModels()
     private lateinit var userProfile: UserProfile
     private lateinit var book: Book
     private lateinit var adapter: ReviewAdapter
@@ -62,8 +66,12 @@ class BookFragment : Fragment() {
     }
 
     private fun bindViews() {
-        book = arguments?.getParcelable(BookListFragment.BOOK_KEY) ?: provideEmptyBook()
 
+        book = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(BookListFragment.BOOK_KEY, Book::class.java) ?: provideEmptyBook()
+        } else {
+            arguments?.getParcelable(BookListFragment.BOOK_KEY) ?: provideEmptyBook()
+        }
         viewModel.setBookId(book.id)
 
         binding.title.text = book.title
@@ -118,6 +126,7 @@ class BookFragment : Fragment() {
         cover = "",
         pages = 0
     )
+
     private fun observeUserProfile() {
         viewModel.viewModelScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

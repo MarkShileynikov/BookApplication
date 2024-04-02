@@ -2,22 +2,25 @@ package com.example.mybookapplication.presentation.search.booklist
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.mybookapplication.App
-import com.example.mybookapplication.data.api.NetworkClient
-import com.example.mybookapplication.data.repository.BookRepositoryImpl
 import com.example.mybookapplication.domain.entity.Book
 import com.example.mybookapplication.domain.usecase.FetchBooksByGenreUseCase
 import com.example.mybookapplication.presentation.util.ViewState
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class BookListViewModel(context: Application, private val fetchBooksByGenreUseCase: FetchBooksByGenreUseCase, private val genre : String) : AndroidViewModel(context) {
+@HiltViewModel(assistedFactory = BookListViewModel.BookListViewModelFactory::class)
+class BookListViewModel @AssistedInject constructor(
+    context: Application,
+    private val fetchBooksByGenreUseCase: FetchBooksByGenreUseCase,
+    @Assisted private val genre : String
+) : AndroidViewModel(context) {
     val viewState = MutableStateFlow<ViewState<List<Book>>>(ViewState.Loading)
     init {
         fetchBooksByGenre()
@@ -35,17 +38,9 @@ class BookListViewModel(context: Application, private val fetchBooksByGenreUseCa
                 }
         }
     }
-    companion object {
-        fun bookListModelFactory(genre: String) : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val bookApiService = NetworkClient.provideBookApiService()
-                val bookRepository = BookRepositoryImpl(bookApiService)
-                val fetchBooksByGenreUseCase = FetchBooksByGenreUseCase(bookRepository)
-                return@initializer BookListViewModel(
-                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App,
-                    fetchBooksByGenreUseCase, genre
-                )
-            }
-        }
+
+    @AssistedFactory
+    interface BookListViewModelFactory {
+        fun create(genre: String): BookListViewModel
     }
 }

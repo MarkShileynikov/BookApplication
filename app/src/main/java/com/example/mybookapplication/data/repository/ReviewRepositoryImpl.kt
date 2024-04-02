@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class ReviewRepositoryImpl(private val context: Context, private val reviewApiService: ReviewApiService) : ReviewRepository {
+
     override suspend fun postReview(userId: String, usermame: String, bookId: String, estimation: Int,review: String?): Event<Review> {
         val event = doCall(context) {
             return@doCall reviewApiService.postReview(
@@ -24,6 +25,7 @@ class ReviewRepositoryImpl(private val context: Context, private val reviewApiSe
                 )
             )
         }
+
         return when(event) {
             is Event.Success -> {
                 val response = event.data

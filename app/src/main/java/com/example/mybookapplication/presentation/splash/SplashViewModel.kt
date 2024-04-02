@@ -7,17 +7,23 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.mybookapplication.App
-import com.example.mybookapplication.data.api.NetworkClient
+import com.example.mybookapplication.data.api.NetworkClientConfig
 import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.domain.usecase.FetchSessionUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SplashViewModel(context : Application, private val fetchSessionUseCase: FetchSessionUseCase) : AndroidViewModel(context) {
+@HiltViewModel
+class SplashViewModel @Inject constructor(
+    context : Application,
+    private val fetchSessionUseCase: FetchSessionUseCase
+) : AndroidViewModel(context) {
     val viewState = MutableStateFlow<SplashViewState>(SplashViewState.Loading)
 
     init {
@@ -42,19 +48,4 @@ class SplashViewModel(context : Application, private val fetchSessionUseCase: Fe
                 }
         }
     }
-    companion object {
-        val splashViewModelFactory : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val context = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App
-                val authApiService = NetworkClient.provideAuthApiService()
-                val prefsDataSource = PrefsDataSourceImpl(context)
-                val sessionRepository = SessionRepositoryImpl(context, authApiService, prefsDataSource)
-                val fetchSessionUseCase = FetchSessionUseCase(sessionRepository)
-                return@initializer SplashViewModel(
-                    context, fetchSessionUseCase
-                )
-            }
-        }
-    }
-
 }

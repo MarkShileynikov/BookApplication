@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepository {
+
     override suspend fun fetchBooks(): Flow<List<Book>> = flow {
         val response = bookApiService.fetchBooks()
         emit(response)

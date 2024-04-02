@@ -21,10 +21,12 @@ import com.example.mybookapplication.presentation.search.booklist.adapter.BookLi
 import com.example.mybookapplication.presentation.search.listener.OnBookClickedListener
 import com.example.mybookapplication.presentation.search.listener.OnGenreClickedListener
 import com.example.mybookapplication.presentation.util.ViewState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListener, OnBookClickedListener {
     companion object {
         const val GENRE_KEY = "genre"
@@ -34,11 +36,13 @@ class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListene
     private lateinit var bookListAdapter: BookListAdapter
     private lateinit var searchView : EditText
     private lateinit var recyclerView : RecyclerView
-    private val viewModel : SearchViewModel by viewModels { SearchViewModel.searchViewModelFactory }
+    private val viewModel : SearchViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews(view)
     }
+
     private fun bindViews(view : View) {
         searchView = view.findViewById(R.id.bookSearchView)
         recyclerView = view.findViewById(R.id.genreList)

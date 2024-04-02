@@ -12,11 +12,17 @@ import com.example.mybookapplication.data.repository.UserRepositoryImpl
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.usecase.FetchUserProfileUseCase
 import com.example.mybookapplication.domain.util.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProfileViewModel(context : Application, private val fetchUserProfileUseCase: FetchUserProfileUseCase) : AndroidViewModel(context) {
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    context : Application,
+    private val fetchUserProfileUseCase: FetchUserProfileUseCase
+) : AndroidViewModel(context) {
     val viewState = MutableStateFlow<Event<UserProfile>>(Event.Failure("No profile found"))
 
     fun fetchUserProfile() {
@@ -28,19 +34,6 @@ class ProfileViewModel(context : Application, private val fetchUserProfileUseCas
                 .collect { userProfile ->
                     viewState.value = userProfile
                 }
-        }
-    }
-    companion object {
-        val profileViewModelFactory : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val prefsDataSource = PrefsDataSourceImpl(this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App)
-                val userRepository = UserRepositoryImpl(prefsDataSource)
-                val fetchUserProfileUseCase = FetchUserProfileUseCase(userRepository)
-                return@initializer ProfileViewModel(
-                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App,
-                    fetchUserProfileUseCase
-                )
-            }
         }
     }
 }

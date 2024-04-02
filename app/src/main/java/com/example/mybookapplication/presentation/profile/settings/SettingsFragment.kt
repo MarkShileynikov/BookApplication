@@ -31,6 +31,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     companion object {
         const val USER_PROFILE_KEY = "USER_PROFILE_KEY"
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -34,6 +34,7 @@ class BookListAdapter(private val books : List<Book>, private val bookClickedLis
         private var cover : ImageView = itemView.findViewById(R.id.bookCover)
         private var ageLimit: TextView = itemView.findViewById(R.id.ageLimit)
         private var releaseYear: TextView = itemView.findViewById(R.id.releaseYear)
+
         fun bind(book : Book) {
             title.text = book.title
             author.text = book.author

@@ -1,14 +1,13 @@
 package com.example.mybookapplication.presentation.profile.settings.editprofile
 
 import android.app.Application
-import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.mybookapplication.App
-import com.example.mybookapplication.data.api.NetworkClient
+import com.example.mybookapplication.data.api.NetworkClientConfig
 import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.data.repository.UpdateUserRepositoryImpl
 import com.example.mybookapplication.domain.entity.UserProfile
@@ -42,7 +41,7 @@ class EditProfileViewModel(context: Application, private val updateUserUseCase: 
             initializer {
                 val context = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App
                 val prefsDataSource = PrefsDataSourceImpl(context)
-                val updateUserApiService = NetworkClient.provideUpdateUserApiService()
+                val updateUserApiService = NetworkClientConfig.provideUpdateUserApiService()
                 val updateUserRepository = UpdateUserRepositoryImpl(context, updateUserApiService)
                 val updateUserUseCase = UpdateUsernameUseCase(prefsDataSource, updateUserRepository)
                 return@initializer EditProfileViewModel(

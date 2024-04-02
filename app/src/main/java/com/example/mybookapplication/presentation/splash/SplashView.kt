@@ -10,10 +10,12 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.mybookapplication.R
 import com.example.mybookapplication.presentation.bottomnavigation.MainActivity
 import com.example.mybookapplication.presentation.signin.SignInActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SplashView : AppCompatActivity(R.layout.activity_splash) {
-    private val viewModel: SplashViewModel by viewModels { SplashViewModel.splashViewModelFactory }
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

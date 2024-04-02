@@ -10,18 +10,25 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.mybookapplication.App
 import com.example.mybookapplication.R
-import com.example.mybookapplication.data.api.NetworkClient
+import com.example.mybookapplication.data.api.NetworkClientConfig
 import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.domain.usecase.SignInUseCase
 import com.example.mybookapplication.domain.usecase.SignUpUseCase
 import com.example.mybookapplication.presentation.util.isConnectedToNetwork
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SignUpViewModel(context : Application, private val signUpUseCase: SignUpUseCase, private val signInUseCase: SignInUseCase) : AndroidViewModel(context) {
+@HiltViewModel
+class SignUpViewModel @Inject constructor(
+    context : Application,
+    private val signUpUseCase: SignUpUseCase,
+    private val signInUseCase: SignInUseCase
+) : AndroidViewModel(context) {
     val viewState = MutableStateFlow<SignUpViewState>(SignUpViewState.Idle)
 
     fun onSignUpButtonClicked(email: String, password : String, username : String, context: Context) {
@@ -71,21 +78,4 @@ class SignUpViewModel(context : Application, private val signUpUseCase: SignUpUs
         val passwordRegex = Regex("^(?=.*[A-Za-z]).{8,}\$")
         return passwordRegex.matches(password)
     }
-
-    companion object {
-        val signUpViewModelFactory : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val context = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App
-                val authApiService = NetworkClient.provideAuthApiService()
-                val prefsDataSource = PrefsDataSourceImpl(context)
-                val sessionRepository = SessionRepositoryImpl(context, authApiService, prefsDataSource)
-                val signUpUseCase = SignUpUseCase(context, sessionRepository)
-                val signInUseCase = SignInUseCase(context, sessionRepository)
-                return@initializer SignUpViewModel(
-                    context, signUpUseCase, signInUseCase
-                )
-            }
-        }
-    }
-
 }

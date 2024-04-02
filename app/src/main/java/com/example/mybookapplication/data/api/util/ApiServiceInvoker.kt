@@ -23,7 +23,6 @@ suspend fun <T : Any> doCall(context : Context, call: suspend () -> Response<T>)
                 3003 -> apiError.message = context.getString(R.string.invalid_email_or_password)
                 3033 -> apiError.message = context.getString(R.string.email_already_exists)
                 1155 -> apiError.message = context.getString(R.string.username_already_exists)
-
             }
             Event.Failure(apiError.message)
         } else {

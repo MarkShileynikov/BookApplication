@@ -13,6 +13,7 @@ class UpdateUserRepositoryImpl(private val context : Context, private val update
         val event = doCall(context) {
             return@doCall updateUserApiService.updateUsername(userId, UpdateUsernameRequest(username))
         }
+
         return when(event) {
             is Event.Success -> {
                 val response = event.data

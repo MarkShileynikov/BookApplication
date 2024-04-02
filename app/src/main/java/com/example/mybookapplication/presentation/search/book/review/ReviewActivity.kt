@@ -14,11 +14,13 @@ import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.ActivityReviewBinding
 import com.example.mybookapplication.presentation.search.book.BookFragment
 import com.example.mybookapplication.presentation.util.ViewState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class ReviewActivity : AppCompatActivity(R.layout.activity_review) {
     private lateinit var binding: ActivityReviewBinding
-    private val viewModel: ReviewViewModel by viewModels { ReviewViewModel.reviewModelFactory }
+    private val viewModel: ReviewViewModel by viewModels()
     private lateinit var userId: String
     private lateinit var bookId: String
     private lateinit var username: String

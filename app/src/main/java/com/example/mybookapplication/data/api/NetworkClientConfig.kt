@@ -5,8 +5,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object NetworkClient {
-    private const val BASE_NOTE_URL = "https://utmostback.backendless.app/api/"
+object NetworkClientConfig {
+    const val BASE_NOTE_URL = "https://utmostback.backendless.app/api/"
 
     private val logging = HttpLoggingInterceptor()
 
