@@ -1,10 +1,14 @@
 package com.example.mybookapplication.presentation.search.book
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -28,7 +32,7 @@ import kotlinx.coroutines.launch
 
 class BookFragment : Fragment() {
     private var _binding: FragmentBookBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentBookBinding get() = _binding!!
     private var isExpanded = false
     private val viewModel: BookViewModel by viewModels { BookViewModel.bookViewModelFactory }
     private lateinit var userProfile: UserProfile
@@ -46,7 +50,6 @@ class BookFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentBookBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -54,11 +57,6 @@ class BookFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindViews()
         observeUserProfile()
-
-    }
-
-    override fun onResume() {
-        super.onResume()
         viewModel.fetchReviews()
         observeReviews()
     }
@@ -139,18 +137,19 @@ class BookFragment : Fragment() {
 
     private fun observeReviews() {
         viewModel.viewModelScope.launch {
-            viewModel.reviewViewState.collect {
-                when(it) {
-                    is ViewState.Success -> {
-                        val reviews = it.data
-                        handleOnSuccess(reviews)
-
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.reviewViewState.collect {
+                    when(it) {
+                        is ViewState.Success -> {
+                            val reviews = it.data
+                            handleOnSuccess(reviews)
+                        }
+                        is ViewState.Failure -> {
+                            binding.noReviews.visibility = View.VISIBLE
+                            binding.noReviews.text = getString(R.string.check_internet_connection)
+                        }
+                        is ViewState.Loading -> {}
                     }
-                    is ViewState.Failure -> {
-                        binding.noReviews.visibility = View.VISIBLE
-                        binding.noReviews.text = getString(R.string.check_internet_connection)
-                    }
-                    is ViewState.Loading -> {}
                 }
             }
         }
@@ -189,16 +188,19 @@ class BookFragment : Fragment() {
         }
     }
 
+    private val editReviewLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            viewModel.fetchReviews()
+            observeReviews()
+        }
+    }
+
     private fun moveToReviewScreen(bookId: String, userId: String, username: String) {
         val intent = Intent(requireActivity(), ReviewActivity::class.java)
         intent.putExtra(BOOK_ID_KEY, bookId)
         intent.putExtra(USER_ID_KEY, userId)
         intent.putExtra(USERNAME_KEY, username)
-        startActivity(intent)
-    }
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
+        editReviewLauncher.launch(intent)
     }
 
     private fun bindMark(reviews: List<Review>) {
@@ -215,4 +217,8 @@ class BookFragment : Fragment() {
         binding.marksCount.text = viewModel.pluralizeReaders(requireContext(), count)
     }
 
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 }

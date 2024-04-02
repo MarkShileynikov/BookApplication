@@ -166,3 +166,11 @@ bapp/src/main/java/com/example/mybookapplication/presentation/search/book/review
 gapp/src/main/java/com/example/mybookapplication/presentation/search/booklist/adapter/BookListAdapter.kt,6\3\6311b009288ec71566c986c424b58c2f28ba39f4
 …
 Uapp/src/main/java/com/example/mybookapplication/domain/usecase/FetchReviewsUseCase.kt,a\2\a21388c1a8766fce6d995d60e774bfde5b3edbeb
+‡
+Wapp/src/main/java/com/example/mybookapplication/presentation/mybooks/MyBooksFragment.kt,d\6\d68b7b7afc00f10515168177045985bec949cba9
+j
+:app/src/main/java/com/example/mybookapplication/data/utils,c\0\c0bf4490400bb911dcf6932b25522e25710791ba
+x
+Happ/src/main/java/com/example/mybookapplication/data/utils/ImageUtils.kt,2\9\29c5e9cb6c75ab072fe1ac595a9dc3a26f82e249
+ƒ
+Sapp/src/main/java/com/example/mybookapplication/data/api/response/AvatarResponse.kt,d\1\d19cb53e3fd76f44571a97a584273a18ae544796

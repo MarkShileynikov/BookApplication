@@ -21,13 +21,14 @@ class ReviewViewModel(context: Application, private val postReviewUseCase: PostR
     val viewState = MutableStateFlow<ViewState<Review>>(ViewState.Loading)
 
     fun postReview(userId: String, username: String, bookId: String, estimation: Int, review: String?) {
+        val formattedReview = review?.trim()?.replace("\\s+".toRegex(), " ") ?: ""
         viewModelScope.launch {
             postReviewUseCase(PostReviewUseCase.Params(
                 userId = userId,
                 username = username,
                 bookId = bookId,
                 estimation = estimation,
-                review = review
+                review = formattedReview
             )
             )
                 .onStart { viewState.value = ViewState.Loading }

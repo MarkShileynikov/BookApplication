@@ -20,6 +20,10 @@ import kotlinx.coroutines.launch
 
 class SettingsViewModel(context : Application, private val signOutUseCase: SignOutUseCase, private val fetchUserProfileUseCase: FetchUserProfileUseCase) : AndroidViewModel(context) {
     private val _userProfile = MutableStateFlow<Event<UserProfile>>(Event.Failure("No profile found"))
+
+    init {
+        fetchUserProfile()
+    }
     val userProfile: StateFlow<Event<UserProfile>> get() = _userProfile
     fun signOut() {
         viewModelScope.launch {
@@ -49,7 +53,6 @@ class SettingsViewModel(context : Application, private val signOutUseCase: SignO
                     this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App,
                     signOutUseCase, fetchUserProfileUseCase
                 )
-
             }
         }
     }

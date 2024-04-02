@@ -41,6 +41,28 @@
             app:layout_constraintTop_toBottomOf="@id/bookTitle"
             app:layout_constraintStart_toEndOf="@id/bookCover"
             tools:text="Оскар Уайлд"
+            android:textColor="@color/yellow_button"/>
+
+        <TextView
+            android:id="@+id/ageLimit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/bookCover"
+            app:layout_constraintTop_toBottomOf="@id/bookAuthor"
+            tools:text="16+"
+            android:textColor="@color/light_grey"/>
+
+        <TextView
+            android:id="@+id/releaseYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/bookCover"
+            app:layout_constraintTop_toBottomOf="@id/ageLimit"
+            tools:text="1992 год"
             android:textColor="@color/light_grey"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

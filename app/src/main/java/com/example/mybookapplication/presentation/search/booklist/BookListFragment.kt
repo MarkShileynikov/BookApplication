@@ -68,13 +68,6 @@ class BookListFragment : Fragment(), OnBookClickedListener{
         }
     }
 
-    private fun setUpRecyclerView(view : View, books : List<Book>) {
-        val recyclerView : RecyclerView = view.findViewById(R.id.bookList)
-        adapter = BookListAdapter(books, this)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
-    }
-
     private fun observeBooks(view : View) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -95,6 +88,14 @@ class BookListFragment : Fragment(), OnBookClickedListener{
             }
         }
     }
+
+    private fun setUpRecyclerView(view : View, books : List<Book>) {
+        val recyclerView : RecyclerView = view.findViewById(R.id.bookList)
+        adapter = BookListAdapter(books, this, requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+    }
+
 
     override fun bookClicked(book: Book) {
         val bundle = Bundle()

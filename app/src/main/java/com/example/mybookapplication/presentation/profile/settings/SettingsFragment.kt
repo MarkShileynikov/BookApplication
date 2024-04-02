@@ -1,5 +1,6 @@
 package com.example.mybookapplication.presentation.profile.settings
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -41,11 +43,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchUserProfile()
         observeUserProfile()
     }
 
@@ -92,10 +89,17 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         activity?.finish()
     }
 
+    private val editProfileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            viewModel.fetchUserProfile()
+            observeUserProfile()
+        }
+    }
+
     private fun moveToEditProfileScreen(user : UserProfile) {
         val intent = Intent(requireActivity(), EditProfileActivity::class.java)
         intent.putExtra(USER_PROFILE_KEY, user)
-        startActivity(intent)
+        editProfileLauncher.launch(intent)
     }
 
     private fun showAlertDialog() {

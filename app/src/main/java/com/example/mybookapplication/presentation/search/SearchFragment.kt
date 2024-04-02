@@ -104,7 +104,7 @@ class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListene
     }
 
     private fun setUpBookList(books : List<Book>) {
-        bookListAdapter = BookListAdapter(books, this)
+        bookListAdapter = BookListAdapter(books, this, requireContext())
         recyclerView.adapter = bookListAdapter
     }
 

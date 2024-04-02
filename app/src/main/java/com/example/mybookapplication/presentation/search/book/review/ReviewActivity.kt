@@ -1,5 +1,6 @@
 package com.example.mybookapplication.presentation.search.book.review
 
+import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -95,6 +96,7 @@ class ReviewActivity : AppCompatActivity(R.layout.activity_review) {
             viewModel.viewState.collect {
                 when(it) {
                     is ViewState.Success -> {
+                        setResult(Activity.RESULT_OK)
                         finish()
                     }
                     is ViewState.Loading -> {

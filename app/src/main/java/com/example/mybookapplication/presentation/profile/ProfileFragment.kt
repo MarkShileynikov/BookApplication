@@ -22,10 +22,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding get() = _binding!!
     private lateinit var userProfile: UserProfile
 
-    companion object {
-        const val USER_PROFILE_KEY = "USER_PROFILE_KEY"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

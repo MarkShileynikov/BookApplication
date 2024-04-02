@@ -1,6 +1,7 @@
 package com.example.mybookapplication.presentation.profile.settings.editprofile
 
 import android.app.Application
+import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 
 class EditProfileViewModel(context: Application, private val updateUserUseCase: UpdateUsernameUseCase) : AndroidViewModel(context){
     val viewState = MutableStateFlow<ViewState<UserProfile>>(ViewState.Loading)
+
     fun updateUsername(id: String, username: String) {
         viewModelScope.launch {
             updateUserUseCase(
