@@ -12,4 +12,5 @@ data class ReviewResponse(
     val review: String?,
     @SerializedName("created")
     val publicationDate: Long,
+    val avatar: String?
 )

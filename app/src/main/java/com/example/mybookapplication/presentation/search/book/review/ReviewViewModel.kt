@@ -20,7 +20,7 @@ class ReviewViewModel @Inject constructor(
 ) : AndroidViewModel(context) {
     val viewState = MutableStateFlow<ViewState<Review>>(ViewState.Loading)
 
-    fun postReview(userId: String, username: String, bookId: String, estimation: Int, review: String?) {
+    fun postReview(userId: String, username: String, bookId: String, estimation: Int, review: String?, avatar: String?) {
         val formattedReview = review?.trim()?.replace("\\s+".toRegex(), " ") ?: ""
         viewModelScope.launch {
             postReviewUseCase(PostReviewUseCase.Params(
@@ -28,7 +28,8 @@ class ReviewViewModel @Inject constructor(
                 username = username,
                 bookId = bookId,
                 estimation = estimation,
-                review = formattedReview
+                review = formattedReview,
+                avatar = avatar
             )
             )
                 .onStart { viewState.value = ViewState.Loading }

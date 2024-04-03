@@ -13,12 +13,15 @@ import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.usecase.FetchUserProfileUseCase
 import com.example.mybookapplication.domain.usecase.SignOutUseCase
 import com.example.mybookapplication.domain.util.Event
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SettingsViewModel(context : Application, private val signOutUseCase: SignOutUseCase, private val fetchUserProfileUseCase: FetchUserProfileUseCase) : AndroidViewModel(context) {
+@HiltViewModel
+class SettingsViewModel @Inject constructor(context : Application, private val signOutUseCase: SignOutUseCase, private val fetchUserProfileUseCase: FetchUserProfileUseCase) : AndroidViewModel(context) {
     private val _userProfile = MutableStateFlow<Event<UserProfile>>(Event.Failure("No profile found"))
 
     init {
@@ -41,21 +44,6 @@ class SettingsViewModel(context : Application, private val signOutUseCase: SignO
                 .collect { userProfile ->
                     _userProfile.value = userProfile
                 }
-        }
-    }
-
-    companion object {
-        val settingsViewModelFactory : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val prefsDataSource = PrefsDataSourceImpl(this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App)
-                val userRepository = UserRepositoryImpl(prefsDataSource)
-                val signOutUseCase = SignOutUseCase(userRepository)
-                val fetchUserProfileUseCase = FetchUserProfileUseCase(userRepository)
-                return@initializer SettingsViewModel(
-                    this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App,
-                    signOutUseCase, fetchUserProfileUseCase
-                )
-            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mybookapplication.domain.usecase
 
+import android.net.Uri
 import com.example.mybookapplication.data.prefs.PrefsDataSource
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.repository.UpdateUserRepository
@@ -8,28 +9,21 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class UpdateUsernameUseCase @Inject constructor(
-    private val prefsDataSource: PrefsDataSource,
-    private val updateUserRepository: UpdateUserRepository
+class UpdateAvatarUseCase @Inject constructor(
+    private val updateUserRepository: UpdateUserRepository,
+    private val prefsDataSource: PrefsDataSource
 ) {
-
-    data class Params(
-        val userId: String,
-        val username: String,
-    )
-
-    suspend operator fun invoke(params: Params) : Flow<UserProfile> = flow {
-        val event = updateUserRepository.updateUsername(params.userId, params.username)
+    suspend operator fun invoke(uri: Uri, userId: String) : Flow<UserProfile> = flow {
+        val event = updateUserRepository.updateAvatar(uri, userId)
         when(event) {
             is Event.Success -> {
-                val newUserProfile = event.data
-                prefsDataSource.saveUserProfile(newUserProfile)
-                emit(newUserProfile)
+                val userProfile = event.data
+                prefsDataSource.saveUserProfile(userProfile)
+                emit(userProfile)
             }
             is Event.Failure -> {
                 throw Exception(event.exception)
             }
         }
     }
-
 }

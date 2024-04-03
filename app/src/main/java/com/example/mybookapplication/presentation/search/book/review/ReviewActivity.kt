@@ -24,6 +24,7 @@ class ReviewActivity : AppCompatActivity(R.layout.activity_review) {
     private lateinit var userId: String
     private lateinit var bookId: String
     private lateinit var username: String
+    private lateinit var avatar: String
     private var estimation = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +57,18 @@ class ReviewActivity : AppCompatActivity(R.layout.activity_review) {
             userId = intent.getStringExtra(BookFragment.USER_ID_KEY) ?: ""
             bookId = intent.getStringExtra(BookFragment.BOOK_ID_KEY) ?: ""
             username = intent.getStringExtra(BookFragment.USERNAME_KEY) ?: ""
+            avatar = intent.getStringExtra(BookFragment.AVATAR_KEY) ?: ""
 
             val review = binding.reviewInput.text.toString()
 
-            viewModel.postReview(userId = userId, username = username, bookId = bookId, estimation = estimation, review = review)
+            viewModel.postReview(
+                userId = userId,
+                username = username,
+                bookId = bookId,
+                estimation = estimation,
+                review = review,
+                avatar = avatar
+                )
             observeEvents()
         }
     }

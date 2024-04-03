@@ -10,4 +10,5 @@ data class ReviewRequest(
     val bookId: String,
     val estimation: Int,
     val review: String?,
+    val avatar: String?
 )

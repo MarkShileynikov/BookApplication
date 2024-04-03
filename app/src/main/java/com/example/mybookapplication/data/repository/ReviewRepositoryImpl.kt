@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class ReviewRepositoryImpl @Inject constructor(private val context: Context, private val reviewApiService: ReviewApiService) : ReviewRepository {
 
-    override suspend fun postReview(userId: String, usermame: String, bookId: String, estimation: Int,review: String?): Event<Review> {
+    override suspend fun postReview(userId: String, usermame: String, bookId: String, estimation: Int,review: String?, avatar: String?): Event<Review> {
         val event = doCall(context) {
             return@doCall reviewApiService.postReview(
                 ReviewRequest(
@@ -23,6 +23,7 @@ class ReviewRepositoryImpl @Inject constructor(private val context: Context, pri
                     bookId = bookId,
                     estimation = estimation,
                     review = review,
+                    avatar = avatar
                 )
             )
         }
@@ -36,7 +37,8 @@ class ReviewRepositoryImpl @Inject constructor(private val context: Context, pri
                     bookId = response.bookId,
                     estimation = response.estimation,
                     review = response.review,
-                    publicationDate = response.publicationDate
+                    publicationDate = response.publicationDate,
+                    avatar = response.avatar
                 )
                 Event.Success(review)
             }
@@ -58,7 +60,8 @@ class ReviewRepositoryImpl @Inject constructor(private val context: Context, pri
                 bookId = response.bookId,
                 estimation = response.estimation,
                 review = response.review,
-                publicationDate = response.publicationDate
+                publicationDate = response.publicationDate,
+                avatar = response.avatar
             )
         }
     }

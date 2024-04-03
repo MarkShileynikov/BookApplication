@@ -14,18 +14,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.FragmentSettingsBinding
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.util.Event
 import com.example.mybookapplication.presentation.profile.settings.editprofile.EditProfileActivity
 import com.example.mybookapplication.presentation.signin.SignInActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : SettingsViewModel by viewModels { SettingsViewModel.settingsViewModelFactory }
+    private val viewModel : SettingsViewModel by viewModels()
     private lateinit var user: UserProfile
 
     companion object {
@@ -78,6 +82,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private fun setUpProfile(user: UserProfile) {
         binding.email.text = user.email
         binding.userName.text = user.username
+        if (user.avatar != "") {
+            binding.avatar.load(user.avatar) {
+                crossfade(true)
+                transformations(CircleCropTransformation())
+            }
+        }
     }
 
     private fun signOut() {
@@ -128,7 +138,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
-        Log.d("onDestroy", "onDestroy")
     }
 
 

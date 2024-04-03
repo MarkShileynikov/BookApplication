@@ -43,10 +43,30 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/avatar"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
                     android:src="@drawable/avatar"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:visibility="visible"
+                    />
+
+                <FrameLayout
+                    android:id="@+id/loading"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/orange"/>
+
+                </FrameLayout>
 
                 <FrameLayout
                     android:id="@+id/editAvatarButton"

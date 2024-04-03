@@ -1,6 +1,7 @@
 package com.example.mybookapplication.data.api.util
 
 import android.content.Context
+import android.util.Log
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.util.Event
 import retrofit2.Response

@@ -15,6 +15,7 @@ class PostReviewUseCase @Inject constructor(private val reviewRepository: Review
         val bookId: String,
         val estimation: Int,
         val review: String?,
+        val avatar: String?
     )
 
     operator fun invoke(params: Params) : Flow<Review> = flow {
@@ -23,7 +24,9 @@ class PostReviewUseCase @Inject constructor(private val reviewRepository: Review
             username = params.username,
             bookId = params.bookId,
             estimation = params.estimation,
-            review = params.review
+            review = params.review,
+            avatar = params.avatar
+
         )
         when(event) {
             is Event.Success -> {

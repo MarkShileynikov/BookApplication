@@ -1,6 +1,10 @@
 package com.example.mybookapplication.data.utils
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
@@ -17,7 +21,7 @@ object ImageUtils {
     }
 
     @Throws(IOException::class)
-    private fun getFile(context: Context, uri: Uri): File {
+    fun getFile(context: Context, uri: Uri): File {
         var destinationFilename: File
         try {
             destinationFilename = File(context.filesDir.path + File.separatorChar + queryName(context, uri))
@@ -54,5 +58,52 @@ object ImageUtils {
             return returnCursor.getString(nameIndex)
         }
         return ""
+    }
+
+
+    fun compressImage(context: Context, fileUri: Uri): File? {
+        val file = getFile(context, fileUri)
+        val filePath = file.path ?: return null
+        val rotatedBitmap = rotateBitmapIfNeeded(filePath)
+
+        val fileSizeInBytes = File(filePath).length()
+        val fileSizeInKB = fileSizeInBytes / 1024
+
+        val compressionQuality = when {
+            fileSizeInKB > 5120 -> 10
+            fileSizeInKB > 2048 -> 15
+            fileSizeInKB > 1024 -> 30
+            else -> 40
+        }
+
+        val tempFile = createTempImageFile(context) ?: return null
+        val outputStream = FileOutputStream(tempFile)
+        rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, compressionQuality, outputStream)
+        outputStream.flush()
+        outputStream.close()
+
+        return tempFile
+    }
+
+    private fun rotateBitmapIfNeeded(filePath: String): Bitmap {
+        val bitmap = BitmapFactory.decodeFile(filePath)
+
+        val exif = ExifInterface(filePath)
+        val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
+            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
+        }
+
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+    }
+
+    private fun createTempImageFile(context: Context): File? {
+        val tempFileName = "avatar"
+        val storageDir = context.cacheDir
+        return File.createTempFile(tempFileName, ".jpg", storageDir)
     }
 }

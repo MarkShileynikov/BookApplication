@@ -1,11 +1,15 @@
 package com.example.mybookapplication.presentation.search.book.adapter
 
 import android.content.Context
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.mybookapplication.R
 import com.example.mybookapplication.domain.entity.Review
 import java.util.Calendar
@@ -32,6 +36,7 @@ class ReviewAdapter(private val reviews: List<Review>) : RecyclerView.Adapter<Re
         private var mark: TextView = item.findViewById(R.id.mark)
         private var review: TextView = item.findViewById(R.id.review)
         private var date: TextView = item.findViewById(R.id.date)
+        private var avatar: ImageView = item.findViewById(R.id.avatar)
         private var isExpanded = false
 
         fun bind(review: Review) {
@@ -41,6 +46,12 @@ class ReviewAdapter(private val reviews: List<Review>) : RecyclerView.Adapter<Re
 
             date.text = transformDate(review.publicationDate)
 
+            if (review.avatar != "") {
+                avatar.load(review.avatar) {
+                    crossfade(true)
+                    transformations(CircleCropTransformation())
+                }
+            }
 
             val linesCount = this.review.lineCount
             val maxLines = 8

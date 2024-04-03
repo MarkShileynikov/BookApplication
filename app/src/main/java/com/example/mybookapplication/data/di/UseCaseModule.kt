@@ -16,6 +16,7 @@ import com.example.mybookapplication.domain.usecase.PostReviewUseCase
 import com.example.mybookapplication.domain.usecase.SignInUseCase
 import com.example.mybookapplication.domain.usecase.SignOutUseCase
 import com.example.mybookapplication.domain.usecase.SignUpUseCase
+import com.example.mybookapplication.domain.usecase.UpdateAvatarUseCase
 import com.example.mybookapplication.domain.usecase.UpdateUsernameUseCase
 import dagger.Module
 import dagger.Provides
@@ -74,6 +75,11 @@ object UseCaseModule {
     @Provides
     fun provideFetchSessionUseCase(repository: SessionRepository): FetchSessionUseCase {
         return FetchSessionUseCase(repository)
+    }
+
+    @Provides
+    fun provideUpdateAvatarUseCase(repository: UpdateUserRepository, prefsDataSource: PrefsDataSource): UpdateAvatarUseCase {
+        return UpdateAvatarUseCase(repository, prefsDataSource)
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.mybookapplication.presentation.profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.mybookapplication.R
 import com.example.mybookapplication.databinding.FragmentProfileBinding
 import com.example.mybookapplication.domain.entity.UserProfile
@@ -36,15 +39,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindViews()
+        viewModel.fetchUserProfile()
+        observeUserProfile()
     }
-
 
     private fun bindViews() {
         binding.settingsButton.setOnClickListener {
             moveToSettingsScreen()
         }
-        viewModel.fetchUserProfile()
-        observeUserProfile()
     }
 
     private fun observeUserProfile() {
@@ -68,6 +70,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun setUpProfile(userProfile : UserProfile) {
         binding.userName.text = userProfile.username
         binding.authorizationButton.visibility = View.GONE
+        if (userProfile.avatar != "") {
+            binding.avatar.load(userProfile.avatar) {
+                crossfade(true)
+                transformations(CircleCropTransformation())
+            }
+        }
     }
 
     private fun moveToSettingsScreen() {

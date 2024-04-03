@@ -86,6 +86,7 @@
     <string name="no_reviews">Отзывов нет</string>
     <string name="check_internet_connection">Проверьте подключение к интернету</string>
     <string name="already_reviewed">Вы уже написали отзыв на эту книгу</string>
+    <string name="fill_field">Заполните поле</string>
     <plurals name="readers_singular">
         <item quantity="one">%d читатель оценил</item>
         <item quantity="few">%d читателя оценили</item>

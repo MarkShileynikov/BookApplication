@@ -44,6 +44,7 @@ class BookFragment : Fragment() {
         const val BOOK_ID_KEY = "BOOK_ID_KEY"
         const val USER_ID_KEY = "USER_ID_KEY"
         const val USERNAME_KEY = "USERNAME_KEY"
+        const val AVATAR_KEY = "AVATAR_KEY"
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,7 +108,7 @@ class BookFragment : Fragment() {
         }
 
         binding.makeReview.setOnClickListener {
-            moveToReviewScreen(book.id, userProfile.userId, userProfile.username)
+            moveToReviewScreen(book.id, userProfile.userId, userProfile.username, userProfile.avatar)
         }
 
     }
@@ -201,11 +202,12 @@ class BookFragment : Fragment() {
         }
     }
 
-    private fun moveToReviewScreen(bookId: String, userId: String, username: String) {
+    private fun moveToReviewScreen(bookId: String, userId: String, username: String, avatar: String?) {
         val intent = Intent(requireActivity(), ReviewActivity::class.java)
         intent.putExtra(BOOK_ID_KEY, bookId)
         intent.putExtra(USER_ID_KEY, userId)
         intent.putExtra(USERNAME_KEY, username)
+        intent.putExtra(AVATAR_KEY, avatar)
         editReviewLauncher.launch(intent)
     }
 

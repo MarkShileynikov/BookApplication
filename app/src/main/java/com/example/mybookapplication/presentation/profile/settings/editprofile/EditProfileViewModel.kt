@@ -1,16 +1,11 @@
 package com.example.mybookapplication.presentation.profile.settings.editprofile
 
 import android.app.Application
+import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.mybookapplication.App
-import com.example.mybookapplication.data.api.NetworkClientConfig
-import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
-import com.example.mybookapplication.data.repository.UpdateUserRepositoryImpl
 import com.example.mybookapplication.domain.entity.UserProfile
+import com.example.mybookapplication.domain.usecase.UpdateAvatarUseCase
 import com.example.mybookapplication.domain.usecase.UpdateUsernameUseCase
 import com.example.mybookapplication.presentation.util.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,9 +18,12 @@ import javax.inject.Inject
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
     context: Application,
-    private val updateUserUseCase: UpdateUsernameUseCase
+    private val updateUserUseCase: UpdateUsernameUseCase,
+    private val updateAvatarUseCase: UpdateAvatarUseCase
 ) : AndroidViewModel(context){
-    val viewState = MutableStateFlow<ViewState<UserProfile>>(ViewState.Loading)
+    val updateUsernameViewState = MutableStateFlow<ViewState<UserProfile>>(ViewState.Loading)
+    val updateAvatarViewState = MutableStateFlow<ViewState<UserProfile>>(ViewState.Loading)
+
 
     fun updateUsername(id: String, usernameFromActivity: String) {
         val username = usernameFromActivity.trim().replace("\\s+".toRegex(), " ") ?: ""
@@ -33,12 +31,23 @@ class EditProfileViewModel @Inject constructor(
             updateUserUseCase(
                 UpdateUsernameUseCase.Params(id, username)
             )
-                .onStart { viewState.value = ViewState.Loading }
+                .onStart { updateUsernameViewState.value = ViewState.Loading }
                 .catch {
-                    viewState.value = ViewState.Failure(it.message ?: "Something went wrong")
+                    updateUsernameViewState.value = ViewState.Failure(it.message ?: "Something went wrong")
                 }
                 .collect {userProfile ->
-                    viewState.value = ViewState.Success(userProfile)
+                    updateUsernameViewState.value = ViewState.Success(userProfile)
+                }
+        }
+    }
+
+    fun updateAvatar(uri: Uri, userId: String) {
+        viewModelScope.launch {
+            updateAvatarUseCase(uri, userId)
+                .onStart { updateAvatarViewState.value = ViewState.Loading }
+                .catch { updateAvatarViewState.value = ViewState.Failure(it.message ?: "Something went wrong") }
+                .collect {userProfile ->
+                    updateAvatarViewState.value = ViewState.Success(userProfile)
                 }
         }
     }

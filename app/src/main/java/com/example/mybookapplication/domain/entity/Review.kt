@@ -7,4 +7,5 @@ data class Review(
     val estimation: Int,
     val review: String?,
     val publicationDate: Long,
+    val avatar: String?
 )

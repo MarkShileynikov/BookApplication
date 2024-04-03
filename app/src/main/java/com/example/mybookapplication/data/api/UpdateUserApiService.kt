@@ -1,5 +1,6 @@
 package com.example.mybookapplication.data.api
 
+import com.example.mybookapplication.data.api.request.UpdateAvatarRequest
 import com.example.mybookapplication.data.api.request.UpdateUsernameRequest
 import com.example.mybookapplication.data.api.response.AvatarResponse
 import com.example.mybookapplication.data.api.response.UserProfileResponse
@@ -17,6 +18,10 @@ interface UpdateUserApiService {
     suspend fun updateUsername(@Path("objectId") id: String, @Body request: UpdateUsernameRequest) : Response<UserProfileResponse>
 
     @Multipart
-    @POST("files")
-    suspend fun updateAvatar(@Part avatar: MultipartBody.Part) : Response<AvatarResponse>
+    @POST("files/avatars")
+    suspend fun uploadAvatar(@Part image: MultipartBody.Part) : Response<AvatarResponse>
+
+    @PUT("users/{objectId}")
+    suspend fun updateAvatar(@Path("objectId") id: String, @Body request: UpdateAvatarRequest): Response<UserProfileResponse>
 }
+
