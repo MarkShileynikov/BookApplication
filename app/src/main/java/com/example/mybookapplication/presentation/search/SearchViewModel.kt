@@ -2,13 +2,7 @@ package com.example.mybookapplication.presentation.search
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.mybookapplication.App
-import com.example.mybookapplication.data.api.NetworkClientConfig
-import com.example.mybookapplication.data.repository.BookRepositoryImpl
 import com.example.mybookapplication.domain.entity.Book
 import com.example.mybookapplication.domain.usecase.FetchBooksByTitleOrAuthorUseCase
 import com.example.mybookapplication.presentation.util.ViewState

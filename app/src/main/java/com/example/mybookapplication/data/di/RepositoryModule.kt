@@ -6,7 +6,6 @@ import com.example.mybookapplication.data.api.BookApiService
 import com.example.mybookapplication.data.api.ReviewApiService
 import com.example.mybookapplication.data.api.UpdateUserApiService
 import com.example.mybookapplication.data.prefs.PrefsDataSource
-import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.data.repository.BookRepositoryImpl
 import com.example.mybookapplication.data.repository.ReviewRepositoryImpl
 import com.example.mybookapplication.data.repository.SessionRepositoryImpl
@@ -24,38 +23,27 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 
+
+
 @Module
 @InstallIn(ViewModelComponent::class)
-object ContextModule {
-    @Provides
-    fun provideContext(@ApplicationContext context: Context) : Context{
-        return context
-    }
+interface RepositoryModuleModule {
 
-    @Provides
-    fun provideUserRepository(prefsDataSource: PrefsDataSource) : UserRepository {
-        return UserRepositoryImpl(prefsDataSource)
-    }
+    @Binds
+    fun bindUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository
 
-    @Provides
-    fun provideBookRepository(bookApiService: BookApiService) : BookRepository {
-        return BookRepositoryImpl(bookApiService)
-    }
+    @Binds
+    fun bindBookRepository(bookRepositoryImpl: BookRepositoryImpl): BookRepository
 
-    @Provides
-    fun provideReviewRepository(context: Context, reviewApiService: ReviewApiService) : ReviewRepository {
-        return ReviewRepositoryImpl(context, reviewApiService)
-    }
+    @Binds
+    fun bindReviewRepository(reviewRepositoryImpl: ReviewRepositoryImpl): ReviewRepository
 
-    @Provides
-    fun provideSessionRepository(context: Context, authApiService: AuthApiService, prefsDataSource: PrefsDataSource) : SessionRepository {
-        return SessionRepositoryImpl(context, authApiService, prefsDataSource)
-    }
+    @Binds
+    fun bindSessionRepository(sessionRepositoryImpl: SessionRepositoryImpl): SessionRepository
 
-    @Provides
-    fun provideUpdateUserRepository(context: Context, updateUserApiService: UpdateUserApiService) : UpdateUserRepository {
-        return UpdateUserRepositoryImpl(context, updateUserApiService)
-    }
+    @Binds
+    fun bindUpdateUserRepository(updateUserRepositoryImpl: UpdateUserRepositoryImpl): UpdateUserRepository
 }
+
 
 

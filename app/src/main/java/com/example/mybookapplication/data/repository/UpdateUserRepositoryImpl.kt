@@ -7,8 +7,9 @@ import com.example.mybookapplication.data.api.util.doCall
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.repository.UpdateUserRepository
 import com.example.mybookapplication.domain.util.Event
+import javax.inject.Inject
 
-class UpdateUserRepositoryImpl(private val context : Context, private val updateUserApiService: UpdateUserApiService) : UpdateUserRepository{
+class UpdateUserRepositoryImpl @Inject constructor(private val context : Context, private val updateUserApiService: UpdateUserApiService) : UpdateUserRepository{
     override suspend fun updateUsername(userId: String, username: String): Event<UserProfile> {
         val event = doCall(context) {
             return@doCall updateUserApiService.updateUsername(userId, UpdateUsernameRequest(username))

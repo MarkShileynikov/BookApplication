@@ -6,15 +6,15 @@ import com.example.mybookapplication.data.api.request.SignInRequest
 import com.example.mybookapplication.data.api.request.SignUpRequest
 import com.example.mybookapplication.data.api.util.doCall
 import com.example.mybookapplication.data.prefs.PrefsDataSource
-import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
 import com.example.mybookapplication.domain.entity.Session
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.repository.SessionRepository
 import com.example.mybookapplication.domain.util.Event
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class SessionRepositoryImpl(
+class SessionRepositoryImpl @Inject constructor(
     private val context : Context,
     private val authApiService: AuthApiService,
     private val prefsDataSource: PrefsDataSource

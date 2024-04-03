@@ -13,15 +13,22 @@ import com.example.mybookapplication.data.repository.UpdateUserRepositoryImpl
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.usecase.UpdateUsernameUseCase
 import com.example.mybookapplication.presentation.util.ViewState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EditProfileViewModel(context: Application, private val updateUserUseCase: UpdateUsernameUseCase) : AndroidViewModel(context){
+@HiltViewModel
+class EditProfileViewModel @Inject constructor(
+    context: Application,
+    private val updateUserUseCase: UpdateUsernameUseCase
+) : AndroidViewModel(context){
     val viewState = MutableStateFlow<ViewState<UserProfile>>(ViewState.Loading)
 
-    fun updateUsername(id: String, username: String) {
+    fun updateUsername(id: String, usernameFromActivity: String) {
+        val username = usernameFromActivity.trim().replace("\\s+".toRegex(), " ") ?: ""
         viewModelScope.launch {
             updateUserUseCase(
                 UpdateUsernameUseCase.Params(id, username)
@@ -36,18 +43,4 @@ class EditProfileViewModel(context: Application, private val updateUserUseCase: 
         }
     }
 
-    companion object {
-        val editProfileViewModel : ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val context = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as App
-                val prefsDataSource = PrefsDataSourceImpl(context)
-                val updateUserApiService = NetworkClientConfig.provideUpdateUserApiService()
-                val updateUserRepository = UpdateUserRepositoryImpl(context, updateUserApiService)
-                val updateUserUseCase = UpdateUsernameUseCase(prefsDataSource, updateUserRepository)
-                return@initializer EditProfileViewModel(
-                    context, updateUserUseCase
-                )
-            }
-        }
-    }
 }

@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -22,11 +21,13 @@ import com.example.mybookapplication.databinding.ActivityEditProfileBinding
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.presentation.profile.settings.SettingsFragment
 import com.example.mybookapplication.presentation.util.ViewState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.IOException
 
+@AndroidEntryPoint
 class EditProfileActivity: AppCompatActivity(R.layout.activity_edit_profile) {
-    private val viewModel : EditProfileViewModel by viewModels { EditProfileViewModel.editProfileViewModel }
+    private val viewModel : EditProfileViewModel by viewModels()
     private lateinit var binding : ActivityEditProfileBinding
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var requestGalleryLauncher: ActivityResultLauncher<String>

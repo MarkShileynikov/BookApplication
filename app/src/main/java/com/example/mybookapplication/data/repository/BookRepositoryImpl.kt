@@ -7,8 +7,9 @@ import com.example.mybookapplication.domain.repository.BookRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class BookRepositoryImpl(private val bookApiService : BookApiService) : BookRepository {
+class BookRepositoryImpl @Inject constructor(private val bookApiService : BookApiService) : BookRepository {
 
     override suspend fun fetchBooks(): Flow<List<Book>> = flow {
         val response = bookApiService.fetchBooks()

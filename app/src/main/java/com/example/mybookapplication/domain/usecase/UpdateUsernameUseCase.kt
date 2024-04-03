@@ -1,15 +1,14 @@
 package com.example.mybookapplication.domain.usecase
 
 import com.example.mybookapplication.data.prefs.PrefsDataSource
-import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
-import com.example.mybookapplication.data.repository.UpdateUserRepositoryImpl
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.repository.UpdateUserRepository
 import com.example.mybookapplication.domain.util.Event
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class UpdateUsernameUseCase(
+class UpdateUsernameUseCase @Inject constructor(
     private val prefsDataSource: PrefsDataSource,
     private val updateUserRepository: UpdateUserRepository
 ) {

@@ -10,8 +10,9 @@ import com.example.mybookapplication.domain.util.Event
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class ReviewRepositoryImpl(private val context: Context, private val reviewApiService: ReviewApiService) : ReviewRepository {
+class ReviewRepositoryImpl @Inject constructor(private val context: Context, private val reviewApiService: ReviewApiService) : ReviewRepository {
 
     override suspend fun postReview(userId: String, usermame: String, bookId: String, estimation: Int,review: String?): Event<Review> {
         val event = doCall(context) {

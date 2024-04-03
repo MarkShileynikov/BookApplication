@@ -2,14 +2,7 @@ package com.example.mybookapplication.presentation.splash
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.mybookapplication.App
-import com.example.mybookapplication.data.api.NetworkClientConfig
-import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
-import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.domain.usecase.FetchSessionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay

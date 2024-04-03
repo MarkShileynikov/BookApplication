@@ -4,15 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.mybookapplication.App
 import com.example.mybookapplication.R
-import com.example.mybookapplication.data.api.NetworkClientConfig
-import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
-import com.example.mybookapplication.data.repository.SessionRepositoryImpl
 import com.example.mybookapplication.domain.usecase.SignInUseCase
 import com.example.mybookapplication.domain.usecase.SignUpUseCase
 import com.example.mybookapplication.presentation.util.isConnectedToNetwork

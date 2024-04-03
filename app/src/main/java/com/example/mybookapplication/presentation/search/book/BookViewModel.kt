@@ -3,16 +3,8 @@ package com.example.mybookapplication.presentation.search.book
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.mybookapplication.App
 import com.example.mybookapplication.R
-import com.example.mybookapplication.data.api.NetworkClientConfig
-import com.example.mybookapplication.data.prefs.PrefsDataSourceImpl
-import com.example.mybookapplication.data.repository.ReviewRepositoryImpl
-import com.example.mybookapplication.data.repository.UserRepositoryImpl
 import com.example.mybookapplication.domain.entity.Review
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.usecase.FetchReviewsUseCase

@@ -1,13 +1,13 @@
 package com.example.mybookapplication.domain.usecase
 
-import com.example.mybookapplication.data.repository.ReviewRepositoryImpl
 import com.example.mybookapplication.domain.entity.Review
 import com.example.mybookapplication.domain.repository.ReviewRepository
 import com.example.mybookapplication.domain.util.Event
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class PostReviewUseCase(private val reviewRepository: ReviewRepository) {
+class PostReviewUseCase @Inject constructor(private val reviewRepository: ReviewRepository) {
 
     data class Params(
         val userId: String,
