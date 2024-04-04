@@ -48,7 +48,8 @@ class BookRepositoryImpl @Inject constructor(private val bookApiService : BookAp
             releaseYear = response.releaseYear,
             ageLimit = response.ageLimit,
             cover = response.cover,
-            pages = response.pages
+            pages = response.pages,
+            url = response.url
         )
     }
 }

@@ -57,7 +57,7 @@ class SearchFragment : Fragment(R.layout.fragment_search), OnGenreClickedListene
     private fun setUpGenreList() {
         val genres : List<String> = listOf(
             getString(R.string.fantasy),
-            getString(R.string.fiction),
+            getString(R.string.philosophical_literature),
             getString(R.string.classic),
             getString(R.string.fantastic),
             getString(R.string.roman),

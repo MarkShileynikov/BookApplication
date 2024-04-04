@@ -14,5 +14,6 @@ data class BookResponse(
     @SerializedName("age_limit")
     val ageLimit: Int,
     val cover: String,
-    val pages: Int
+    val pages: Int,
+    val url: String?,
 )

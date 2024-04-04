@@ -1,12 +1,14 @@
 package com.example.mybookapplication.presentation.search.book
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -27,6 +29,8 @@ import com.example.mybookapplication.presentation.search.book.adapter.ReviewAdap
 import com.example.mybookapplication.presentation.search.book.review.ReviewActivity
 import com.example.mybookapplication.presentation.search.booklist.BookListFragment
 import com.example.mybookapplication.presentation.util.ViewState
+import com.rajat.pdfviewer.PdfViewerActivity
+import com.rajat.pdfviewer.util.saveTo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -57,10 +61,21 @@ class BookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideKeyboard()
         bindViews()
         observeUserProfile()
         viewModel.fetchReviews()
         observeReviews()
+
+    }
+
+    private fun Fragment.hideKeyboard() {
+        view?.let { activity?.hideKeyboard(it) }
+    }
+
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun bindViews() {
@@ -111,6 +126,22 @@ class BookFragment : Fragment() {
             moveToReviewScreen(book.id, userProfile.userId, userProfile.username, userProfile.avatar)
         }
 
+        binding.readBook.setOnClickListener {
+            launchPdfFromUrl(book.url, book.title)
+        }
+
+    }
+
+    private fun launchPdfFromUrl(url: String?, title: String) {
+        startActivity(
+            PdfViewerActivity.launchPdfFromUrl(
+                context = requireActivity(),
+                pdfUrl = url,
+                pdfTitle = title,
+                saveTo = saveTo.ASK_EVERYTIME,
+                enableDownload = false
+            )
+        )
     }
 
     private fun provideEmptyBook() = Book(
@@ -122,7 +153,8 @@ class BookFragment : Fragment() {
         releaseYear = 0,
         ageLimit = 0,
         cover = "",
-        pages = 0
+        pages = 0,
+        url = ""
     )
 
     private fun observeUserProfile() {

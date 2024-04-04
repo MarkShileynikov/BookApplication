@@ -9,7 +9,6 @@ import com.example.mybookapplication.data.api.request.UpdateUsernameRequest
 import com.example.mybookapplication.data.api.response.UserProfileResponse
 import com.example.mybookapplication.data.api.util.doCall
 import com.example.mybookapplication.data.utils.ImageUtils
-import com.example.mybookapplication.domain.entity.Avatar
 import com.example.mybookapplication.domain.entity.UserProfile
 import com.example.mybookapplication.domain.repository.UpdateUserRepository
 import com.example.mybookapplication.domain.util.Event
